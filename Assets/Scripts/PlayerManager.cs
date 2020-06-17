@@ -47,6 +47,7 @@ public class PlayerManager : MonoBehaviour
 
     public void AddLevel()
     {
+        level++;
     }
     public void AddHP(int cure)
     {
@@ -58,18 +59,21 @@ public class PlayerManager : MonoBehaviour
         }
         hp += cure;
     }
-    public void AddExp(int ex, int damage)
+    public void SubHP(int damage)
+    {
+        hp -= damage;
+    }
+    public void AddExp(int ex)
     {
         if(exp + ex >= maxExp)
         {
             int diff = (exp + ex) - maxExp;
             exp = 0;
-            level++;
-            AddExp(diff, damage);
+            AddLevel();
+            AddExp(diff);
         }else
         {
             exp += ex;
-            hp -= damage;
         }
     }
     public void AddMoney(int gold)

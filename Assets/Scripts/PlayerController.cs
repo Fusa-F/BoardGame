@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerManager;
     PlayerManager pManager;
+    public GameObject canvas;
 
     void Start()
     {
@@ -57,7 +58,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "red")
         {
-            pManager.AddExp(Random.Range(50, 100), 10);
+            // pManager.AddExp(Random.Range(50, 100), 10);
+            GameObject battlePanel = (GameObject)Resources.Load ("Prefab/BattlePanel");
+            GameObject battlePanelPrefab = (GameObject)Instantiate(battlePanel);
+            battlePanelPrefab.transform.SetParent(canvas.transform, false);
         }
         if(other.gameObject.tag == "blue")
         {
