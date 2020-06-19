@@ -77,15 +77,19 @@ public class PlayerController : MonoBehaviour
             }
             if(other.gameObject.tag == "blue")
             {
-                pManager.AddHP(20);
+                int cure = Random.Range(20, 80);
+                pManager.AddHP(cure);
             }
             if(other.gameObject.tag == "gold")
             {
-                pManager.AddMoney(500);
+                int g = Random.Range(100, 500);
+                pManager.AddMoney(g);
             }
             if(other.gameObject.tag == "silver")
             {
-                pManager.AddPower(10, 100);
+                int g = Random.Range(50, 300);
+                int p = Random.Range(100, 500);
+                pManager.AddPower(g, p);
             }
         }else
         {

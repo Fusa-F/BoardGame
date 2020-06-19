@@ -25,6 +25,7 @@ public class BattlePanelManager : MonoBehaviour
         playerController = GameObject.Find("Player");
         pController = playerController.GetComponent<PlayerController>();
         boxCollider = playerController.GetComponent<BoxCollider2D>();
+        boxCollider.enabled = false;
         playerManager = GameObject.Find("Player/PlayerManager");
         pManager = playerManager.GetComponent<PlayerManager>();
 
@@ -34,7 +35,11 @@ public class BattlePanelManager : MonoBehaviour
         //プレイヤー表示位置・レイヤー設定
         pController.SetMove(battlePos);
         playerController.GetComponent<SpriteRenderer>().sortingLayerName = "BattleField";
-        playerController.transform.DOLocalMove(battlePos, 1f);
+        playerController.transform.DOLocalMove(battlePos, 1f).OnComplete(()=>
+            {
+                boxCollider.enabled = true;
+            }
+        );
 
         //グリッド・敵生成
         GameObject battleGrid = (GameObject)Resources.Load("Prefab/BattleGrid");

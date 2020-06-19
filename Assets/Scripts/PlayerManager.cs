@@ -14,6 +14,9 @@ public class PlayerManager : MonoBehaviour
     public Text moneyText;
     public Text powerText;
 
+    public GameObject textPanel;
+    TextManager textManager;
+
     //Status
     [SerializeField] public string pName;
     [SerializeField] public int level;
@@ -31,6 +34,8 @@ public class PlayerManager : MonoBehaviour
         hpSlider.maxValue = maxHP;
         exp = 0;
         expSlider.maxValue = maxExp;
+
+        textManager = textPanel.GetComponent<TextManager>();
     }
 
     void Update()
@@ -47,10 +52,12 @@ public class PlayerManager : MonoBehaviour
 
     public void AddLevel()
     {
+        textManager.SetText("レベルアップ!\n" + "Lv." + level.ToString() + "になった!");
         level++;
     }
     public void AddHP(int cure)
     {
+        textManager.SetText(cure.ToString() + "かいふく");
         if(hp + cure > maxHP)
         {
             int diff = (hp + cure) - maxHP;
@@ -61,6 +68,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void SubHP(int damage)
     {
+        textManager.SetText(damage.ToString() + "ダメージ");
         hp -= damage;
     }
     public void AddExp(int ex)
@@ -78,11 +86,19 @@ public class PlayerManager : MonoBehaviour
     }
     public void AddMoney(int gold)
     {
+        textManager.SetText(gold.ToString() + "Gひろった！");
         money += gold;
     }
     public void AddPower(int pow, int gold)
     {
-        power += pow;
-        money -= gold;
+        if(money >= gold)
+        {
+            textManager.SetText(gold.ToString() + "Gで" + pow.ToString() + "パワーをえた！");                
+            power += pow;
+            money -= gold;
+        }else
+        {
+            textManager.SetText(gold.ToString() + "Gもってないのでなにもなし...");                
+        }
     }
 }
