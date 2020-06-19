@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     public GameObject playerManager;
     PlayerManager pManager;
     public GameObject canvas;
+    public GameObject battlePanelPrefab;
+    BattlePanelManager bpManager;
+
+    public bool isBattle = false;
+    public bool endBattle = false;
 
     void Start()
     {
@@ -52,28 +57,75 @@ public class PlayerController : MonoBehaviour
                 .Join(transform.DOScale(new Vector2(.5f, .5f), .2f))
                 .Append(transform.DOScale(new Vector2(1.2f, 1.2f), .2f))
                 .Append(transform.DOScale(new Vector2(1f, 1f), .2f));
+
+        if(endBattle)
+        {
+            endBattle = false;
+        }
         return sequence;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "red")
+        if(!isBattle)
         {
-            // pManager.AddExp(Random.Range(50, 100), 10);
-            GameObject battlePanel = (GameObject)Resources.Load ("Prefab/BattlePanel");
-            GameObject battlePanelPrefab = (GameObject)Instantiate(battlePanel);
-            battlePanelPrefab.transform.SetParent(canvas.transform, false);
-        }
-        if(other.gameObject.tag == "blue")
+            if(other.gameObject.tag == "red" && !endBattle)
+            {
+                GameObject battlePanel = (GameObject)Resources.Load ("Prefab/BattlePanel");
+                battlePanelPrefab = (GameObject)Instantiate(battlePanel);
+                battlePanelPrefab.transform.SetParent(canvas.transform, false);
+                bpManager = battlePanelPrefab.GetComponent<BattlePanelManager>();
+            }
+            if(other.gameObject.tag == "blue")
+            {
+                pManager.AddHP(20);
+            }
+            if(other.gameObject.tag == "gold")
+            {
+                pManager.AddMoney(500);
+            }
+            if(other.gameObject.tag == "silver")
+            {
+                pManager.AddPower(10, 100);
+            }
+        }else
         {
-            pManager.AddHP(20);
+            if(other.gameObject.tag == "BattleField")
+            {
+                Debug.Log("Enter:BF");
+            }
+            if(other.gameObject.tag == "Exit")
+            {
+                endBattle = true;
+                bpManager.EndBattle();
+                Debug.Log("Enter:Exit");
+            }     
+            if(other.gameObject.tag == "Enemy")
+            {
+                Debug.Log("ENEMY!");
+                pManager.AddExp(10);
+                pManager.SubHP(Random.Range(20, 50));
+                Destroy(other.gameObject);
+            }      
         }
-        if(other.gameObject.tag == "gold")
-        {
-            pManager.AddMoney(500);
-        }
-        if(other.gameObject.tag == "silver")
-        {
-            pManager.AddPower(10, 100);
-        }
+    }
+
+    public Vector2 GetMove()
+    {
+        return this.move;
+    }
+
+    public void SetMove(Vector2 pos)
+    {
+        this.move = pos;
+    }
+
+    public void SetIsBattle(bool tf)
+    {
+        this.isBattle = tf;
+    }
+
+    public void SetEndBattle(bool tf)
+    {
+        this.endBattle = tf;
     }
 }

@@ -8,6 +8,9 @@ TagManager:
   - blue
   - gold
   - silver
+  - BattleField
+  - Exit
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -50,4 +53,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 1623317469
+    locked: 0
+  - name: BattleField
+    uniqueID: 3670348147
     locked: 0
