@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject playerManager;
     PlayerManager pManager;
+    public GameObject randomNumPanel;
+    RandomManager randomManager;
     public GameObject canvas;
     public GameObject battlePanelPrefab;
     BattlePanelManager bpManager;
@@ -23,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
         move = this.transform.position;
         pManager = playerManager.GetComponent<PlayerManager>();
+        randomManager = randomNumPanel.GetComponent<RandomManager>();
     }
 
     public void MoveUp()
@@ -62,6 +65,10 @@ public class PlayerController : MonoBehaviour
         {
             endBattle = false;
         }
+        if(!isBattle)
+        {
+            randomManager.SubRandomNum(1);
+        }
         return sequence;
     }
 
@@ -91,6 +98,10 @@ public class PlayerController : MonoBehaviour
                 int p = Random.Range(100, 500);
                 pManager.AddPower(g, p);
             }
+            if(other.gameObject.tag == "normal")
+            {
+                pManager.NoneAdd();
+            }
         }else
         {
             if(other.gameObject.tag == "BattleField")
@@ -106,7 +117,7 @@ public class PlayerController : MonoBehaviour
             if(other.gameObject.tag == "Enemy")
             {
                 Debug.Log("ENEMY!");
-                pManager.AddExp(10);
+                pManager.AddExp(Random.Range(100, 500));
                 pManager.SubHP(Random.Range(20, 50));
                 Destroy(other.gameObject);
             }      
@@ -126,6 +137,11 @@ public class PlayerController : MonoBehaviour
     public void SetIsBattle(bool tf)
     {
         this.isBattle = tf;
+    }
+
+    public bool GetIsBattle()
+    {
+        return isBattle;
     }
 
     public void SetEndBattle(bool tf)

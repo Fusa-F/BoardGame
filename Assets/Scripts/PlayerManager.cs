@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
         textManager = textPanel.GetComponent<TextManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         //テキストのセット・スライダーの更新
         pNameText.text = pName;
@@ -100,5 +100,44 @@ public class PlayerManager : MonoBehaviour
         {
             textManager.SetText(gold.ToString() + "Gもってないのでなにもなし...");                
         }
+    }
+    public void NoneAdd()
+    {
+        int rnd = Random.Range(0, 10);
+        string txt = null;
+        switch (rnd)
+        {
+            case 0:
+                txt = "なにもなかったなぁ。";
+                break;
+            case 1:
+                txt = "小腹がへってきたなぁ。";
+                break;
+            case 2:
+                txt = "ちょっとねむいなぁ。";
+                break;
+            case 3:
+                txt = "髪切ろうかなぁ。";
+                break;
+            case 4:
+                txt = "爪伸びてきたなぁ。";
+                break;
+            case 5:
+                txt = "家のカギ閉めたっけなぁ。";
+                break;
+            case 6:
+                txt = "映画観たいなぁ。";
+                break;
+            case 7:
+                txt = "カレー食いたいなぁ。";
+                break;
+            case 8:
+                txt = "暑いなぁ。";
+                break;
+            case 9:
+                txt = "腰痛いなぁ。";
+                break;
+        }
+        textManager.SetText(pName + "「" + txt + "」\n");
     }
 }

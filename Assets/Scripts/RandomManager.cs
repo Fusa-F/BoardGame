@@ -5,16 +5,26 @@ using UnityEngine.UI;
 
 public class RandomManager : MonoBehaviour
 {
+    public int num = 0;
     public Text randomNumText;
+
+    public GameObject textPanel;
+    TextManager textManager;
 
     void Start()
     {
-
+        textManager = textPanel.GetComponent<TextManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        
+        if(num > 0)
+        {
+            textManager.SetText("のこり" + num.ToString() + "歩動けるわ");
+        }else
+        {
+            
+        }
     }
 
     public int RandomNum()
@@ -24,6 +34,17 @@ public class RandomManager : MonoBehaviour
 
     public void RandomBtn()
     {
-        randomNumText.text = RandomNum().ToString();
+        num = RandomNum();
+        randomNumText.text = num.ToString();
+    }
+
+    public void SubRandomNum(int n)
+    {
+        num -= n;
+    }
+
+    public int GetNum()
+    {
+        return num;
     }
 }
