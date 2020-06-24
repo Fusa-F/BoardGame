@@ -5,28 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerAttackManager : MonoBehaviour
 {
-    public enum Skill {
-        Punch,
-        Kick,
-        Slash
-    };
-    [SerializeField] public Dictionary<Skill, int> skillDictionary = new Dictionary<Skill, int>();
+    [SerializeField] public Dictionary<string, Skill> skill = new Dictionary<string, Skill>();
     void Start()
     {
-        skillDictionary[Skill.Punch] = 2;
-        foreach(var skill in skillDictionary)
+        skill["パンチ"] = new Skill(10, 1, "こぶしで殴りつける。");
+        skill["キック"] = new Skill(15, 1, "思いっきり蹴りとばす。");
+        skill["スラッシュ"] = new Skill(30, 2, "鉄のつるぎで斬りつける。");
+
+        foreach (var key in skill.Keys)
         {
-            Debug.Log(skill.Key + ":" + GetNum(skill.Key));
+            Debug.Log(key + ":" + skill[key].damage + ":" + skill[key].rarity + ":" + skill[key].caption);
         }
     }
 
-    void Update()
-    {
-        
-    }
+    private class Skill {
+        public int damage;
+        public int rarity;
+        public string caption;
 
-    public int GetNum(Skill key)
-    {
-        return skillDictionary[key];
+        public Skill(int damage, int rarity, string caption)
+        {
+            this.damage = damage;
+            this.rarity = rarity;
+            this.caption = caption;
+        }
     }
 }
