@@ -114,13 +114,13 @@ public class PlayerController : MonoBehaviour
                 bpManager.EndBattle();
                 Debug.Log("Enter:Exit");
             }     
-            if(other.gameObject.tag == "Enemy")
-            {
-                Debug.Log("ENEMY!");
-                pManager.AddExp(Random.Range(100, 500));
-                pManager.SubHP(Random.Range(20, 50));
-                Destroy(other.gameObject);
-            }      
+            // if(other.gameObject.tag == "Enemy")
+            // {
+            //     Debug.Log("ENEMY!");
+            //     pManager.AddExp(Random.Range(100, 500));
+            //     pManager.SubHP(Random.Range(20, 50));
+            //     Destroy(other.gameObject);
+            // }      
         }
     }
 

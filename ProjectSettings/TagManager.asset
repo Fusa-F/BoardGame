@@ -12,6 +12,9 @@ TagManager:
   - Exit
   - Enemy
   - normal
+  - Searching
+  - Skill
+  - skill
   layers:
   - Default
   - TransparentFX
