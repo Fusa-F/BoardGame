@@ -17,6 +17,7 @@ public class TileMapGenerator : MonoBehaviour
     public int gold = 3;
     public int silver = 4;
     public int black = 5;
+    [SerializeField] public List<Color> colorList = new List<Color>();
 
     //tileオブジェクト取得
     [SerializeField] public TileBase tile;
@@ -42,14 +43,26 @@ public class TileMapGenerator : MonoBehaviour
         {
             for(int j = 0; j < mapWidth; j++)
             {
-                if(ProbabilityCalclator.Probability(3))
+                if(ProbabilityCalclator.Probability(15))
                 {
                     map[i, j] = red;
                 }
-                // else if(ProbabilityCalclator.Probability(5))
-                // {
-                //     map[i, j] = red;
-                // }
+                else if(ProbabilityCalclator.Probability(15))
+                {
+                    map[i, j] = blue;
+                }
+                else if(ProbabilityCalclator.Probability(10))
+                {
+                    map[i, j] = gold;
+                }
+                else if(ProbabilityCalclator.Probability(10))
+                {
+                    map[i, j] = silver;
+                }
+                else if(ProbabilityCalclator.Probability(5))
+                {
+                    map[i, j] = black;
+                }
                 else
                 {
                     map[i, j] = white;
@@ -69,21 +82,27 @@ public class TileMapGenerator : MonoBehaviour
         {
             for(int j = 0; j < mapWidth; j++)
             {
-                if(map[i, j] == white)
-                {
-                    Vector3Int pos = new Vector3Int(j, i, 0);
-                    tilemap.SetTile(pos, tile);
-                    tilemap.SetTileFlags(pos, TileFlags.None);
-                    tilemap.SetColor(pos, Color.white);
-                }
-                if(map[i, j] == red)
-                {
-                    Vector3Int pos = new Vector3Int(j, i, 0);
-                    tilemap.SetTile(pos, tile);
-                    tilemap.SetTileFlags(pos, TileFlags.None);
-                    tilemap.SetColor(pos, Color.red);
-                }
+                SetColorTile(i, j, white);
+                SetColorTile(i, j, red);
+                SetColorTile(i, j, blue);
+                SetColorTile(i, j, gold);
+                SetColorTile(i, j, silver);
+                SetColorTile(i, j, black);
             }
+        }
+    }
+    /// <summary>
+    /// 設定された各タイルデータに沿いタイル色を設定
+    /// </summary>
+    public void SetColorTile(int i, int j, int colorNum)
+    {
+        Color color = colorList[colorNum];
+        if(map[i, j] == colorNum)
+        {
+            Vector3Int pos = new Vector3Int(j, i, 0);
+            tilemap.SetTile(pos, tile);
+            tilemap.SetTileFlags(pos, TileFlags.None);
+            tilemap.SetColor(pos, color);
         }
     }
 }
