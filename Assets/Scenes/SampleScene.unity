@@ -2213,7 +2213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &495265973
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2246,6 +2246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBtn: {fileID: 1132773050}
+  gameManager: {fileID: 478752745}
 --- !u!61 &495265975
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2921,7 +2922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &865608491
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2954,6 +2955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBtn: {fileID: 441999505}
+  gameManager: {fileID: 478752745}
 --- !u!61 &865608493
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3180,7 +3182,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1014983469
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3213,6 +3215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBtn: {fileID: 1641013611}
+  gameManager: {fileID: 478752745}
 --- !u!61 &1014983471
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4539,6 +4542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveBtn: {fileID: 1897134014}
+  gameManager: {fileID: 478752745}
 --- !u!61 &1382514653
 BoxCollider2D:
   m_ObjectHideFlags: 0
