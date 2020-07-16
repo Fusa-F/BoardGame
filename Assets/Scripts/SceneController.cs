@@ -5,19 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
-    public static SceneController sceneController;
+    //static変数(SceneController.sceneで呼び出し可)
+    public static SceneController scene;
     public string[] scenes = {
         "TitleScene",
-        "SampleScene"
+        "SampleScene",
+        "SelectScene",
+        "MainScene"
     };
 
     void Awake()
     {
-        if(sceneController == null)
+        if(scene == null)
         {
-            sceneController = this;
+            scene = this;
             DontDestroyOnLoad(gameObject);
-        }else
+        }
+        else
         {
             Destroy(gameObject);
         }
@@ -36,6 +40,10 @@ public class SceneController : MonoBehaviour
     public void TitleToSample()
     {
         SceneManager.LoadScene(scenes[1]);
+    }
+    public void SelectToMain()
+    {
+        SceneManager.LoadScene(scenes[3]);
     }
 
 }

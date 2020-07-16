@@ -10,13 +10,16 @@ public class GManager : MonoBehaviour
 
     public bool isBattle;
     public bool endBattle;
+
+    //playerNumber変数
+    public int playerNumber;
     void Awake()
     {
         DontDestroyOnLoad(this);
     }
     void Start()
     {
-        StartCoroutine("SetBtn");
+        // StartCoroutine("SetBtn");
     }
 
     void Update()

@@ -17,6 +17,8 @@ public class PlayerInstantiater : MonoBehaviour
         //camera取得
         cameraObj = Camera.main.gameObject;
         cameraController = cameraObj.GetComponent<CameraController>();
+
+        StartCoroutine("StartInstantiate");
     }
 
     void Update()
@@ -24,13 +26,21 @@ public class PlayerInstantiater : MonoBehaviour
         
     }
 
+    public IEnumerator StartInstantiate()
+    {
+        for(int i = 1; i <= GameManager.Instance.playerNumber; i++)
+        {
+            InstantiatePlayer();
+            yield return new WaitForSeconds(2f);
+        }
+    }
     public void InstantiatePlayer()
     {
         int rndX = Random.Range(1, 11);
         int rndY = Random.Range(1, 11);
         GameObject player = (GameObject)Instantiate(playerObj, new Vector2(rndX, rndY), Quaternion.identity);
 
-        // ・移動メソッド呼び出し     
+        //移動メソッド呼び出し     
         cameraController.SetTarget(player);
     }
 }
