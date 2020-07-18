@@ -21,17 +21,15 @@ public class PlayerInstantiater : MonoBehaviour
         StartCoroutine("StartInstantiate");
     }
 
-    void Update()
-    {
-        
-    }
-
     public IEnumerator StartInstantiate()
     {
-        for(int i = 1; i <= GameManager.Instance.playerNumber; i++)
+        if(GameManager.Instance.playerNumber >= 1)
         {
-            InstantiatePlayer();
-            yield return new WaitForSeconds(2f);
+            for(int i = 1; i <= GameManager.Instance.playerNumber; i++)
+            {
+                InstantiatePlayer();
+                yield return new WaitForSeconds(2f);
+            }
         }
     }
     public void InstantiatePlayer()
