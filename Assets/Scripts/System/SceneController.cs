@@ -27,23 +27,21 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    void Start()
+    public void ToTitle()
     {
-        
+        SceneManager.LoadScene("TitleScene");
     }
-
-    void Update()
+    public void ToSample()
     {
-        
+        SceneManager.LoadScene("SampleScene");
     }
-
-    public void TitleToSample()
+    public void ToSelect()
     {
-        SceneManager.LoadScene(scenes[1]);
+        SceneManager.LoadScene("SelectScene");
     }
-    public void SelectToMain()
+    public void ToMain()
     {
-        SceneManager.LoadScene(scenes[3]);
+        SceneManager.LoadScene("MainScene");
     }
 
 }

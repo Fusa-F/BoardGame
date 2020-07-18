@@ -8,8 +8,9 @@ using UnityEngine.UI;
 ///</summery>
 public enum GameState
 {
+    Title,
     Select,
-    Field,
+    Main,
     Battle
 }
 public class GameManager : MonoBehaviour
@@ -33,15 +34,36 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        SetGameState(GameState.Select);        
     }
 
     ///<summery>
-    ///ゲーム内状態の設定
+    ///ゲーム内状態(state)の設定
     ///</summery>
     public void SetGameState(GameState state)
     {
         currentState = state;
+        ChangeScene(state);
+    }
+    ///<summery>
+    ///ゲーム内状態(state)を参照してシーン遷移メソッド呼び出し
+    ///</summery>
+    public void ChangeScene(GameState state)
+    {
+        if(state == GameState.Title)
+        {
+            SceneController.scene.ToTitle();
+        }
+        else if(state == GameState.Select)
+        {
+            SceneController.scene.ToSelect();
+        }
+        else if(state == GameState.Main)
+        {
+            SceneController.scene.ToMain();
+        }
+        else
+        {
+            Debug.Log("this state has NOT the scene");
+        }
     }
 }
