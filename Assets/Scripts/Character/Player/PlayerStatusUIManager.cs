@@ -15,7 +15,7 @@ public class PlayerStatusUIManager : MonoBehaviour
     void Start()
     {
         // rect = this.gameObject.GetComponent<RectTransform>();
-        rect.DOLocalMoveY(-400f, 2f).SetRelative();
+        rect.DOLocalMoveY(-400f, 1f).SetRelative();
     }
 
     void Update()
