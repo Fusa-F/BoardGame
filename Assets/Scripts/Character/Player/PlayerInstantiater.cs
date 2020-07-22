@@ -42,8 +42,8 @@ public class PlayerInstantiater : MonoBehaviour
                 yield return new WaitForSeconds(2f);
             }
 
-            GameObject playerStatus = (GameObject)Instantiate(playerStatusPanel);
-            playerStatus.transform.SetParent(canvas.transform, false);
+            GameObject playerStatusPanelPre = (GameObject)Instantiate(playerStatusPanel);
+            playerStatusPanelPre.transform.SetParent(canvas.transform, false);
         }
     }
     ///<summery>
@@ -54,8 +54,27 @@ public class PlayerInstantiater : MonoBehaviour
         int rndX = Random.Range(1, 11);
         int rndY = Random.Range(1, 11);
         GameObject player = (GameObject)Instantiate(playerObj, new Vector2(rndX, rndY), Quaternion.identity);
+        SetPlayerStatus(player);
 
         //移動メソッド呼び出し     
         cameraController.SetTarget(player);
     }
+
+    ///<summery>
+    ///プレイヤー情報入力
+    ///</summery>
+    public void SetPlayerStatus(GameObject p)
+    {
+        CharaStatus status = new CharaStatus(
+            "fusa",
+            1,
+            1000,
+            500,
+            50,
+            1500
+        );
+        PlayerStatus playerStatus = p.GetComponent<PlayerStatus>();
+        playerStatus.SetStatus(status);
+    }
+
 }
