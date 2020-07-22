@@ -7,15 +7,20 @@ using DG.Tweening;
 public class PlayerStatusUIManager : MonoBehaviour
 {
     RectTransform rect;
-//    void Awake()
-//    {
-//         rect = this.gameObject.GetComponent<RectTransform>();
-//         rect.DOLocalMoveY(400f, 0f).SetRelative();
-//    } 
+    public List<GameObject> elements = new List<GameObject>();
+   void Awake()
+   {
+        rect = this.gameObject.GetComponent<RectTransform>();
+        //すべての子要素UIの取得
+        foreach(Transform child in this.gameObject.transform)
+        {
+            elements.Add(child.gameObject);
+        }
+   } 
     void Start()
     {
-        rect = this.gameObject.GetComponent<RectTransform>();
-        rect.DOLocalMoveY(-300f, 1f).SetRelative();
+        // rect = this.gameObject.GetComponent<RectTransform>();
+        rect.DOLocalMoveY(-200f, 1f).SetRelative();
     }
 
     void Update()

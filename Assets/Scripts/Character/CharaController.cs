@@ -39,7 +39,7 @@ public class CharaController : MonoBehaviour
         }
         else
         {
-            Debug.Log("Non Key");
+            // Debug.Log("Non Key");
         }
     }
 

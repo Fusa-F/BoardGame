@@ -41,10 +41,10 @@ public class PlayerInstantiater : MonoBehaviour
                 InstantiatePlayer();
                 yield return new WaitForSeconds(2f);
             }
-
-            GameObject playerStatusPanelPre = (GameObject)Instantiate(playerStatusPanel);
-            playerStatusPanelPre.transform.SetParent(canvas.transform, false);
         }
+        //ステータスUI1つ生成
+        GameObject playerStatusPanelPre = (GameObject)Instantiate(playerStatusPanel);
+        playerStatusPanelPre.transform.SetParent(canvas.transform, false);
     }
     ///<summery>
     ///プレイヤー生成

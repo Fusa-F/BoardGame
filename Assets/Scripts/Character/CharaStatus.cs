@@ -21,7 +21,7 @@ public class CharaStatus
         this.maxHp = maxHp;
         this.hp = maxHp;
         this.maxExp = maxExp;
-        this.exp = maxExp;
+        this.exp = 0;
         this.power = power;
         this.money = money;
     }
