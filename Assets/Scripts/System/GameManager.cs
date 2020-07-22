@@ -44,6 +44,20 @@ public class GameManager : MonoBehaviour
         currentState = state;
         ChangeScene(state);
     }
+    //test
+    public void SetBattle()
+    {
+        if(currentState != GameState.Battle)
+        {
+            currentState = GameState.Battle;
+        }
+        else
+        {
+            currentState = GameState.Main;
+        }
+        Debug.Log(currentState);
+    }
+
     ///<summery>
     ///ゲーム内状態(state)を参照してシーン遷移メソッド呼び出し
     ///</summery>

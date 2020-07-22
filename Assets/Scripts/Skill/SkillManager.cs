@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
-{
-    // Start is called before the first frame update
+{  
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        //test
+        if(GameManager.Instance.currentState == GameState.Battle)
+        {
+            this.gameObject.SetActive(true);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
