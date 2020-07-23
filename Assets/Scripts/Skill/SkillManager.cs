@@ -11,14 +11,5 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        //test
-        if(GameManager.Instance.currentState == GameState.Battle)
-        {
-            this.gameObject.SetActive(true);
-        }
-        else
-        {
-            this.gameObject.SetActive(false);
-        }
     }
 }
