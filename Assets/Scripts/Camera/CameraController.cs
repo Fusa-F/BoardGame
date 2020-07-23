@@ -28,4 +28,9 @@ public class CameraController : MonoBehaviour
     {
         transform.DOLocalMove(new Vector3(target.transform.position.x, target.transform.position.y, -10), 1f);
     }
+
+    public void ShakeCamera()
+    {
+        transform.DOShakePosition(.5f);
+    }
 }

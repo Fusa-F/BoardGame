@@ -8,12 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7563428564880437937}
+  - component: {fileID: 7087709696724336490}
   - component: {fileID: 2722316011046415211}
   - component: {fileID: -5282841366071570105}
   - component: {fileID: 3569113281610635595}
   - component: {fileID: 3027647101952829836}
   - component: {fileID: -4659872066033027625}
+  - component: {fileID: 2933235449225952014}
   m_Layer: 0
   m_Name: PlayerChara
   m_TagString: Player
@@ -21,8 +22,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &7563428564880437937
-RectTransform:
+--- !u!4 &7087709696724336490
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -35,11 +36,6 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &2722316011046415211
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -165,3 +161,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillList: []
+--- !u!114 &2933235449225952014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722316011046415204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcb7109ed6c44c3da0714cf3c026a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0}

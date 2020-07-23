@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SkillObjectController : MonoBehaviour
 {
+    //コライダー
     public BoxCollider2D col;
+
     void Start()
     {
         col = this.gameObject.GetComponent<BoxCollider2D>();

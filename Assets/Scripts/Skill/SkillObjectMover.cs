@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class SkillObjectMover : MonoBehaviour
 {
+    //子要素オブジェクト格納リスト
     public List<GameObject> obj = new List<GameObject>();
+
+    //camera
+    private GameObject cameraObj;
+    CameraController cameraController;
+
     private void Awake() {
         //すべての子要素オブジェクトの取得
         foreach(Transform child in this.gameObject.transform)
         {
             obj.Add(child.gameObject);
-        }        
-    }
-    void Start()
-    {
-        
+        }
+
+        //camera取得
+        cameraObj = Camera.main.gameObject;
+        cameraController = cameraObj.GetComponent<CameraController>();          
     }
 
     void Update()
@@ -38,6 +44,8 @@ public class SkillObjectMover : MonoBehaviour
         foreach(GameObject child in obj)
         {
             child.GetComponent<SkillObjectController>().SetCollider();
+            //camera振動
+            cameraController.ShakeCamera();
             yield return new WaitForSeconds(.3f);
             Destroy(child);
         }        

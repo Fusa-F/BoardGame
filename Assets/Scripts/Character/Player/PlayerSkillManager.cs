@@ -9,7 +9,7 @@ public class PlayerSkillManager : MonoBehaviour
 
     void Start()
     {
-        
+        Debug.Log("X -> PlayerSkillManager.SetSkillList()");
     }
 
     void Update()
