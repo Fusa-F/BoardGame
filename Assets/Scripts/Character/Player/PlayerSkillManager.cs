@@ -24,7 +24,5 @@ public class PlayerSkillManager : MonoBehaviour
     public void SetSkillList()
     {
         skillList.Add((GameObject)Resources.Load("Prefab/Skill/Skill_00"));
-        GameObject obj = Instantiate(skillList[0], transform.position, Quaternion.identity);
-        obj.transform.parent = transform;
     }
 }

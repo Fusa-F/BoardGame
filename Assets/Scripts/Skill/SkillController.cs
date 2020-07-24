@@ -19,7 +19,7 @@ public class SkillController : MonoBehaviour
     public void MoveObject()
     {
         // Vector2 line = distance - pos;
-        transform.DOLocalMove(distance, speed).OnComplete(()=>
+        transform.DOLocalMove(distance, speed).SetRelative().OnComplete(()=>
         {
             Destroy(this.gameObject);
         });

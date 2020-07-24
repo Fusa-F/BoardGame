@@ -27,8 +27,10 @@ public class PlayerSkillInstantiater : MonoBehaviour
 
     public void InstantiateSkill()
     {
-        GameObject skillObj = (GameObject)Instantiate(psManager.skillList[0], transform.position, Quaternion.identity);
-        skillObj.transform.parent = transform;
-        skillObj.GetComponent<SkillController>().MoveObject();
+        if(psManager.skillList != null)
+        {
+            GameObject skillObj = (GameObject)Instantiate(psManager.skillList[0], pos, Quaternion.identity);
+            skillObj.GetComponent<SkillController>().MoveObject();
+        }
     }
 }
