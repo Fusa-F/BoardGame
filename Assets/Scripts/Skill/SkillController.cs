@@ -10,7 +10,6 @@ public class SkillController : MonoBehaviour
     //速度
     [SerializeField]public float speed = 1f;
 
-
     void Start()
     {
         MoveObject();
