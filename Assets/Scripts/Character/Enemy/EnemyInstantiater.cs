@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class EnemyInstantiater : MonoBehaviour
 {
+    //static変数(EnemyInstantiater.enemyInstで呼び出し可)
+    public static EnemyInstantiater enemyInst;
+
     //Enemyオブジェクト
     public List<GameObject> enemyObj = new List<GameObject>();
+
+    void Awake()
+    {
+        if(enemyInst == null)
+        {
+            enemyInst = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

@@ -10,8 +10,16 @@ public class SkillController : MonoBehaviour
     //速度
     [SerializeField]public float speed = 1f;
 
+    //camera
+    private GameObject cameraObj;
+    CameraController cameraController;
+
     void Start()
     {
+        //camera取得
+        cameraObj = Camera.main.gameObject;
+        cameraController = cameraObj.GetComponent<CameraController>();
+
         MoveObject();
     }
 
@@ -20,7 +28,16 @@ public class SkillController : MonoBehaviour
         // Vector2 line = distance - pos;
         transform.DOLocalMove(distance, speed).SetRelative().OnComplete(()=>
         {
-            Destroy(this.gameObject);
+            Destroy(transform.parent.gameObject);
         });
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Enemy")
+        {
+            cameraController.ShakeCamera();
+            Destroy(other.gameObject);
+            Destroy(transform.parent.gameObject);
+        }
     }
 }

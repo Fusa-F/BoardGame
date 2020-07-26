@@ -30,7 +30,7 @@ public class PlayerSkillInstantiater : MonoBehaviour
         if(psManager.skillList != null)
         {
             GameObject skillObj = (GameObject)Instantiate(psManager.skillList[0], pos, Quaternion.identity);
-            skillObj.GetComponent<SkillController>().MoveObject();
+            // skillObj.GetComponent<SkillController>().MoveObject();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+[System.Serializable]
 public class TileMapGenerator : MonoBehaviour
 {
     //mapサイズ
@@ -24,7 +25,10 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] public GameObject tilemapObj;
     private Tilemap tilemap;
 
-    void Start()
+    //redマス座標リスト
+    public static List<Vector3Int> redTileList = new List<Vector3Int>();
+
+    void Awake()
     {
         //tilemapクラス取得
         tilemap = tilemapObj.GetComponent<Tilemap>();
@@ -71,6 +75,12 @@ public class TileMapGenerator : MonoBehaviour
         }
 
         CreateMap();
+
+        //test
+        foreach (Vector3Int r in redTileList)
+        {
+            Debug.Log(r);
+        }
     }
 
     /// <summary>
@@ -103,6 +113,11 @@ public class TileMapGenerator : MonoBehaviour
             tilemap.SetTile(pos, tile);
             tilemap.SetTileFlags(pos, TileFlags.None);
             tilemap.SetColor(pos, color);
+
+            if(colorNum == red)
+            {
+                redTileList.Add(pos);
+            }
         }
     }
 }
