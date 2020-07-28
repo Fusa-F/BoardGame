@@ -7,10 +7,17 @@ public class EnemyInstantiater : MonoBehaviour
     //Enemyオブジェクト
     public List<GameObject> enemyObj = new List<GameObject>();
 
+    //camera
+    private GameObject cameraObj;
+    CameraController cameraController;
+
     void Start()
     {
         enemyObj.Add((GameObject)Resources.Load("Prefab/EnemyChara"));
 
+        //camera取得
+        cameraObj = Camera.main.gameObject;
+        cameraController = cameraObj.GetComponent<CameraController>();
     }
 
     ///<summery>
@@ -18,15 +25,15 @@ public class EnemyInstantiater : MonoBehaviour
     ///</summery>
     public void InstantiateEnemy(Vector3Int pos)
     {
-        int rndX = Random.Range(1, 11);
-        int rndY = Random.Range(1, 11);
+        int x = pos.x + 1;
+        int y = pos.y + 1;
 
         foreach (GameObject enemyPre in enemyObj)
         {
-            GameObject enemy = (GameObject)Instantiate(enemyPre, new Vector2(pos.x, pos.y), Quaternion.identity);
+            GameObject enemy = (GameObject)Instantiate(enemyPre, new Vector2(x, y), Quaternion.identity);
 
-            // //移動メソッド呼び出し     
-            // cameraController.SetTarget(enemy);
+            //移動メソッド呼び出し     
+            cameraController.SetTarget(enemy);
             
         }
     }
