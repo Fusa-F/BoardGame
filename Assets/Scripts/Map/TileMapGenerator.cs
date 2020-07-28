@@ -6,6 +6,9 @@ using UnityEngine.Tilemaps;
 [System.Serializable]
 public class TileMapGenerator : MonoBehaviour
 {
+    //static(TileMapGenerator.tile)
+    public static TileMapGenerator tileGen;
+
     //mapサイズ
     [SerializeField] public int mapWidth = 10;
     [SerializeField] public int mapHeight = 10;
@@ -26,10 +29,20 @@ public class TileMapGenerator : MonoBehaviour
     private Tilemap tilemap;
 
     //redマス座標リスト
-    public static List<Vector3Int> redTileList = new List<Vector3Int>();
+    public List<Vector3Int> redTileList = new List<Vector3Int>();
 
     void Awake()
     {
+        if(tileGen == null)
+        {
+            tileGen = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         //tilemapクラス取得
         tilemap = tilemapObj.GetComponent<Tilemap>();
 
@@ -76,10 +89,12 @@ public class TileMapGenerator : MonoBehaviour
 
         CreateMap();
 
+        int num=0;
         //test
         foreach (Vector3Int r in redTileList)
         {
-            Debug.Log(r);
+            Debug.Log(num + ":" + r);
+            num++;
         }
     }
 
