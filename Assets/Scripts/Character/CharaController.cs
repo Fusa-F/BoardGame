@@ -16,7 +16,7 @@ public class CharaController : MonoBehaviour
 
     void Start()
     {
-        pos = this.transform.position;        
+        pos = this.transform.position;     
     }
 
     // private void Update()

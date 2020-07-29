@@ -40,7 +40,7 @@ public class RandomDiceManager : MonoBehaviour
     {
         Debug.Log("space -> diceStop");
         int rnd = 0;
-        while(!Input.GetKeyDown(KeyCode.Space)) {
+        while(!Input.GetMouseButtonDown(0)) {
             rnd = Random.Range(0, num.Count - 1);
             text.text = num[rnd].ToString();
             yield return null;

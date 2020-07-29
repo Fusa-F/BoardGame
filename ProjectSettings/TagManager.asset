@@ -16,6 +16,12 @@ TagManager:
   - Skill
   - skill
   - Canvas
+  - PlayerHP
+  - PlayerExp
+  - PlayerName
+  - PlayerLv
+  - PlayerPower
+  - PlayerMoney
   layers:
   - Default
   - TransparentFX
