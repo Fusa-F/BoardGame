@@ -11,6 +11,10 @@ public class PlayerMoveCounter : MonoBehaviour
     //さいの出目変数(外部からSet)
     public int num { get; set; }
 
+    //dice
+    public GameObject canvas;
+    public GameObject dicePanel;
+
     void Awake()
     {
         if(pmCounter == null)
@@ -26,12 +30,21 @@ public class PlayerMoveCounter : MonoBehaviour
 
     void Start()
     {
-        Invoke("test", 5f);
+        dicePanel = (GameObject)Resources.Load("Prefab/DicePanel");
     }
 
     void Update()
     {
         
+    }
+
+    ///<summary>
+    ///サイコロオブジェクト呼び出し->出目numの決定
+    ///</summary>
+    public void InstantiateDice()
+    {
+        GameObject dice = (GameObject)Instantiate(dicePanel);
+        dice.transform.SetParent(canvas.transform, false);
     }
 
     public void test()
@@ -40,7 +53,6 @@ public class PlayerMoveCounter : MonoBehaviour
         {
             MoveCount(p);
         }
-
     }
     ///<summary>
     ///player移動・歩数管理メソッド

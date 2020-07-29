@@ -26,7 +26,16 @@ public class MainFlowManager : MonoBehaviour
     ///</summary>
     public IEnumerator MainFlow()
     {
+        //player生成
         pInst.StartInstantiate();
-        yield return null;
+        foreach(GameObject pl in GameManager.Instance.playerNumber)
+        {
+            //player順にサイコロ・移動メソッド
+            PlayerMoveCounter.pmCounter.InstantiateDice();
+            Debug.Log("---------");
+            yield return PlayerMoveCounter.pmCounter.num;
+
+        }        
+        Debug.Log("!---------!");
     }
 }
