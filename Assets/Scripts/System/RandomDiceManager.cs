@@ -38,11 +38,15 @@ public class RandomDiceManager : MonoBehaviour
     public IEnumerator SetNumText()
     {
         Debug.Log("space -> diceStop");
+        int rnd = 0;
         while(!Input.GetKeyDown(KeyCode.Space)) {
-            int rnd = Random.Range(0, num.Count - 1);
+            rnd = Random.Range(0, num.Count - 1);
             text.text = num[rnd].ToString();
             yield return null;
         }
+        //出目管理クラスに入力
+        PlayerMoveCounter.pmCounter.num = num[rnd];
+
         diceSeq = DiceSequence();
         diceSeq.Play();
     }
