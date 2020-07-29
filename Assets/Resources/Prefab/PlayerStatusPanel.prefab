@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7814746176198683217}
   m_Layer: 5
   m_Name: PlayerPowerText
-  m_TagString: Untagged
+  m_TagString: PlayerPower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 51433169}
   m_Layer: 5
   m_Name: PlayerHP
-  m_TagString: Untagged
+  m_TagString: PlayerHP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,7 +400,7 @@ GameObject:
   - component: {fileID: 1783989219392352577}
   m_Layer: 5
   m_Name: PlayerMoneyText
-  m_TagString: Untagged
+  m_TagString: PlayerMoney
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 8613124941709420791}
   m_Layer: 5
   m_Name: PlayerName
-  m_TagString: Untagged
+  m_TagString: PlayerName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -962,7 +962,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1434a5f70fab81f4499db00a920a1c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elements: []
+  elements:
+  - {fileID: 9210987045987133184}
+  - {fileID: 9210987047621863292}
+  - {fileID: 9210987046403528551}
+  - {fileID: 9210987047591395615}
+  - {fileID: 9210987045841691527}
+  - {fileID: 9210987045994130481}
 --- !u!1 &9210987047033695197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1094,7 @@ GameObject:
   - component: {fileID: 818493499500512991}
   m_Layer: 5
   m_Name: PlayerLv
-  m_TagString: Untagged
+  m_TagString: PlayerLv
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1194,7 +1200,7 @@ GameObject:
   - component: {fileID: 1155374207}
   m_Layer: 5
   m_Name: PlayerExp
-  m_TagString: Untagged
+  m_TagString: PlayerExp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

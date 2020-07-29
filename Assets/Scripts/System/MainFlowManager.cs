@@ -9,6 +9,9 @@ public class MainFlowManager : MonoBehaviour
     PlayerInstantiater pInst;
     public GameObject enemyInstantiater;
     EnemyInstantiater eInst;
+    //
+    public GameObject playerStatusUI;
+    PlayerStatusUIManager pUIMana;
 
     //camera
     private GameObject cameraObj;
@@ -17,6 +20,7 @@ public class MainFlowManager : MonoBehaviour
     private void Awake() {
         pInst = playerInstantiater.GetComponent<PlayerInstantiater>();
         eInst = enemyInstantiater.GetComponent<EnemyInstantiater>();
+        pUIMana = playerStatusUI.GetComponent<PlayerStatusUIManager>();
         
         //camera取得
         cameraObj = Camera.main.gameObject;
@@ -56,11 +60,17 @@ public class MainFlowManager : MonoBehaviour
         //移動メソッド呼び出し     
         cameraController.SetTarget(player);
 
+        CharaStatus status = player.GetComponent<PlayerStatus>().GetStatus();
+        //statusUI出力
+        yield return StartCoroutine(pUIMana.SetElements(status));
+
         //player順にサイコロ・移動メソッド
         PlayerMoveCounter.pmCounter.InstantiateDice();
         yield return StartCoroutine(PlayerMoveCounter.pmCounter.MoveCountCoroutine(player));  
         Debug.Log("ok");  
 
         //tileごとのイベント
+
+        yield return StartCoroutine(pUIMana.RemoveUI());
     }
 }

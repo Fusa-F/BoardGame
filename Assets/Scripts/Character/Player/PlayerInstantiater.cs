@@ -7,10 +7,6 @@ public class PlayerInstantiater : MonoBehaviour
 {
     //Playerオブジェクト
     public GameObject playerObj;
-    //PlayerステータスUI
-    public GameObject playerStatusPanel;
-    //UIをのせるcanvas
-    public GameObject canvas;
 
     //camera
     private GameObject cameraObj;
@@ -21,7 +17,6 @@ public class PlayerInstantiater : MonoBehaviour
     void Awake()
     {
         playerObj = (GameObject)Resources.Load("Prefab/PlayerChara");
-        playerStatusPanel = (GameObject)Resources.Load("Prefab/PlayerStatusPanel");
 
         //camera取得
         cameraObj = Camera.main.gameObject;
@@ -37,14 +32,6 @@ public class PlayerInstantiater : MonoBehaviour
     }
 
     ///<summery>
-    ///開始時呼び出すメソッド
-    ///</summery>
-    public void StartInstantiate()
-    {
-        StartCoroutine("StartInstantiateCoroutine");
-    }
-
-    ///<summery>
     ///開始時呼び出すコルーチン(MainFlowManagerから呼ぶ)
     ///</summery>
     public IEnumerator StartInstantiateCoroutine()
@@ -55,10 +42,6 @@ public class PlayerInstantiater : MonoBehaviour
             GameManager.Instance.playerNumber[i] = InstantiatePlayer();
             yield return new WaitForSeconds(2f);
         }
-
-        //ステータスUI1つ生成
-        GameObject playerStatusPanelPre = (GameObject)Instantiate(playerStatusPanel);
-        playerStatusPanelPre.transform.SetParent(canvas.transform, false);
     }
     ///<summery>
     ///プレイヤー生成
@@ -92,5 +75,4 @@ public class PlayerInstantiater : MonoBehaviour
         PlayerStatus playerStatus = p.GetComponent<PlayerStatus>();
         playerStatus.SetStatus(status);
     }
-
 }
