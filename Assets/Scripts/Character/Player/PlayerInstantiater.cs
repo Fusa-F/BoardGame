@@ -16,6 +16,8 @@ public class PlayerInstantiater : MonoBehaviour
     private GameObject cameraObj;
     CameraController cameraController;
 
+    [Header("test")][SerializeField]public int plNum = 1;
+
     void Awake()
     {
         playerObj = (GameObject)Resources.Load("Prefab/PlayerChara");
@@ -26,6 +28,12 @@ public class PlayerInstantiater : MonoBehaviour
         cameraController = cameraObj.GetComponent<CameraController>();
 
         // StartCoroutine("StartInstantiate");
+
+        //test
+        if(GameManager.Instance.playerNumber.Length <= 0)
+        {
+            GameManager.Instance.playerNumber = new GameObject[plNum];
+        }
     }
 
     ///<summery>
@@ -37,7 +45,7 @@ public class PlayerInstantiater : MonoBehaviour
     }
 
     ///<summery>
-    ///開始時呼び出すコルーチン
+    ///開始時呼び出すコルーチン(MainFlowManagerから呼ぶ)
     ///</summery>
     public IEnumerator StartInstantiateCoroutine()
     {

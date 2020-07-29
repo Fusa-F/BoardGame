@@ -33,11 +33,6 @@ public class PlayerMoveCounter : MonoBehaviour
         dicePanel = (GameObject)Resources.Load("Prefab/DicePanel");
     }
 
-    void Update()
-    {
-        
-    }
-
     ///<summary>
     ///サイコロオブジェクト呼び出し->出目numの決定
     ///</summary>
@@ -47,26 +42,24 @@ public class PlayerMoveCounter : MonoBehaviour
         dice.transform.SetParent(canvas.transform, false);
     }
 
-    public void test()
-    {
-        foreach (GameObject p in GameManager.Instance.playerNumber)
-        {
-            MoveCount(p);
-        }
-    }
     ///<summary>
-    ///player移動・歩数管理メソッド
+    ///player移動・歩数管理コルーチン
     ///引数に移動するplayerを当てて外部から呼び出す
     ///</summary>
     public void MoveCount(GameObject player)
     {
-        //コントローラー取得
-        CharaController cCon = player.GetComponent<CharaController>();
-
-        StartCoroutine("MoveCountCoroutine", cCon);
+        StartCoroutine("MoveCountCoroutine", player);
     }
-    public IEnumerator MoveCountCoroutine(CharaController controller)
+    public IEnumerator MoveCountCoroutine(GameObject player)
     {
+        //コントローラー取得
+        CharaController controller = player.GetComponent<CharaController>();
+
+        Debug.Log("start:"+num);
+        while(num <= 0)
+        {
+            yield return null;
+        }
         while(num > 0)
         {
             num -= controller.MoveInput();

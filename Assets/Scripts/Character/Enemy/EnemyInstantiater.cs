@@ -23,7 +23,7 @@ public class EnemyInstantiater : MonoBehaviour
     ///<summery>
     ///エネミー生成
     ///</summery>
-    public void InstantiateEnemy(Vector3Int pos)
+    public IEnumerator InstantiateEnemy(Vector3Int pos)
     {
         int x = pos.x + 1;
         int y = pos.y + 1;
@@ -34,17 +34,17 @@ public class EnemyInstantiater : MonoBehaviour
 
             //移動メソッド呼び出し     
             cameraController.SetTarget(enemy);
-            
+            yield return new WaitForSeconds(2f);
         }
     }
     ///<summary>
     ///redタイル座標に確率でエネミー生成
     ///</summary>
-    public void SummonEnemyRedTile()
+    public IEnumerator SummonEnemyRedTile()
     {
         int redTileCount = TileMapGenerator.tileGen.redTileList.Count - 1;
         int rnd = Random.Range(0, redTileCount);
-        InstantiateEnemy(TileMapGenerator.tileGen.redTileList[rnd]);
+        yield return StartCoroutine(InstantiateEnemy(TileMapGenerator.tileGen.redTileList[rnd]));
         Debug.Log(rnd);
     }
 }

@@ -26,6 +26,7 @@ public class RandomDiceManager : MonoBehaviour
         //parent
         dicePanel = transform.parent.gameObject;
         rect = dicePanel.GetComponent<RectTransform>();
+        rect.DOLocalMove(new Vector2(0f, -400f), .5f).SetRelative();
         //canvas
         canvas = GameObject.FindWithTag("Canvas");
 
