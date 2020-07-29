@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameState currentState;
 
     //player人数
-    public int playerNumber;
+    public GameObject[] playerNumber;
 
     void Awake()
     {

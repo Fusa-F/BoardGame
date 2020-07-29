@@ -27,6 +27,6 @@ public class PlayerNumberSelecter : MonoBehaviour
     {
         int num = dropdown.value + 1;
         Debug.Log(num + "人");
-        GameManager.Instance.playerNumber = num;
+        GameManager.Instance.playerNumber = new GameObject[num];
     }
 }

@@ -19,30 +19,45 @@ public class CharaController : MonoBehaviour
         pos = this.transform.position;        
     }
 
-    private void Update()
+    // private void Update()
+    // {
+    //     MoveInput();
+    // }
+
+    ///<summary>
+    ///入力・移動
+    ///</summary>
+    public int MoveInput()
     {
         if(Input.GetKeyDown(KeyCode.W))
         {
             MoveUp();
+            return 1;
         }
         else if(Input.GetKeyDown(KeyCode.S))
         {
             MoveDown();
+            return 1;
         }
         else if(Input.GetKeyDown(KeyCode.D))
         {
             MoveRight();
+            return 1;
         }
         else if(Input.GetKeyDown(KeyCode.A))
         {
             MoveLeft();
+            return 1;
         }
         else
         {
-            // Debug.Log("Non Key");
+            return 0;
         }
     }
 
+    ///<summary>
+    ///上下左右移動メソッド
+    ///</summary>
     public void MoveUp()
     {
         pos.y += step;

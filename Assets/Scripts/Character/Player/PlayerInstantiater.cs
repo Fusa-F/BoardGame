@@ -33,15 +33,13 @@ public class PlayerInstantiater : MonoBehaviour
     ///</summery>
     public IEnumerator StartInstantiate()
     {
-        if(GameManager.Instance.playerNumber >= 1)
+        //入力したプレイヤー人数分生成
+        for(int i = 0; i < GameManager.Instance.playerNumber.Length; i++)
         {
-            //入力したプレイヤー人数分生成
-            for(int i = 1; i <= GameManager.Instance.playerNumber; i++)
-            {
-                InstantiatePlayer();
-                yield return new WaitForSeconds(2f);
-            }
+            GameManager.Instance.playerNumber[i] = InstantiatePlayer();
+            yield return new WaitForSeconds(2f);
         }
+
         //ステータスUI1つ生成
         GameObject playerStatusPanelPre = (GameObject)Instantiate(playerStatusPanel);
         playerStatusPanelPre.transform.SetParent(canvas.transform, false);
@@ -49,7 +47,7 @@ public class PlayerInstantiater : MonoBehaviour
     ///<summery>
     ///プレイヤー生成
     ///</summery>
-    public void InstantiatePlayer()
+    public GameObject InstantiatePlayer()
     {
         int rndX = Random.Range(1, 11);
         int rndY = Random.Range(1, 11);
@@ -58,6 +56,8 @@ public class PlayerInstantiater : MonoBehaviour
 
         //移動メソッド呼び出し     
         cameraController.SetTarget(player);
+
+        return player;
     }
 
     ///<summery>

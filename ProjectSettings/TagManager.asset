@@ -15,6 +15,7 @@ TagManager:
   - Searching
   - Skill
   - skill
+  - Canvas
   layers:
   - Default
   - TransparentFX
