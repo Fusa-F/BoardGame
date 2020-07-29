@@ -16,7 +16,7 @@ public class PlayerInstantiater : MonoBehaviour
     private GameObject cameraObj;
     CameraController cameraController;
 
-    void Start()
+    void Awake()
     {
         playerObj = (GameObject)Resources.Load("Prefab/PlayerChara");
         playerStatusPanel = (GameObject)Resources.Load("Prefab/PlayerStatusPanel");

@@ -24,21 +24,9 @@ public class PlayerMoveCounter : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        foreach (GameObject p in GameManager.Instance.playerNumber)
-        {
-            MoveCount(p);
-        }
-    }
-
-    void Update()
-    {
-        
-    }
-
     ///<summary>
     ///player移動・歩数管理メソッド
+    ///引数に移動するplayerを当てて外部から呼び出す
     ///</summary>
     public void MoveCount(GameObject player)
     {
