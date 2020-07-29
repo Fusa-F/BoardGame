@@ -58,11 +58,14 @@ public class RandomDiceManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         sequence.Append(rect.DOScale(new Vector2(1.1f, 1.1f), 1f))
-                .Append(rect.DOLocalMove(new Vector2(0f, 400f), .5f).SetRelative())
+                .Append(rect.DOLocalMove(new Vector2(0f, -50f), .2f).SetRelative())
+                .Append(rect.DOLocalMove(new Vector2(0f, 450f), .5f).SetRelative())
                 .AppendCallback(()=>{
                     GameObject rndNumPanel = (GameObject)Resources.Load("Prefab/RndNumPanel");
                     GameObject rndNumPanelPre = (GameObject)Instantiate(rndNumPanel);
                     rndNumPanelPre.transform.SetParent(canvas.transform, false);
+
+                    Destroy(dicePanel);
                 });
 
         return sequence;

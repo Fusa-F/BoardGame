@@ -25,13 +25,21 @@ public class PlayerInstantiater : MonoBehaviour
         cameraObj = Camera.main.gameObject;
         cameraController = cameraObj.GetComponent<CameraController>();
 
-        StartCoroutine("StartInstantiate");
+        // StartCoroutine("StartInstantiate");
+    }
+
+    ///<summery>
+    ///開始時呼び出すメソッド
+    ///</summery>
+    public void StartInstantiate()
+    {
+        StartCoroutine("StartInstantiateCoroutine");
     }
 
     ///<summery>
     ///開始時呼び出すコルーチン
     ///</summery>
-    public IEnumerator StartInstantiate()
+    public IEnumerator StartInstantiateCoroutine()
     {
         //入力したプレイヤー人数分生成
         for(int i = 0; i < GameManager.Instance.playerNumber.Length; i++)

@@ -19,11 +19,16 @@ public class RndNumPanelManager : MonoBehaviour
 
         text = child.GetComponent<Text>();
         text.text = "あと" + PlayerMoveCounter.pmCounter.num.ToString() + "歩";        
-
     }
 
     void FixedUpdate()
     {
-        text.text = "あと" + PlayerMoveCounter.pmCounter.num.ToString() + "歩";        
+        text.text = "あと" + PlayerMoveCounter.pmCounter.num.ToString() + "歩";    
+        if(PlayerMoveCounter.pmCounter.num <= 0)
+        {
+            rect.DOLocalMove(new Vector2(200f, 0), 1f).SetRelative().OnComplete(()=>{
+                Destroy(this.gameObject);
+            });
+        }    
     }
 }

@@ -24,6 +24,24 @@ public class PlayerMoveCounter : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        Invoke("test", 5f);
+    }
+
+    void Update()
+    {
+        
+    }
+
+    public void test()
+    {
+        foreach (GameObject p in GameManager.Instance.playerNumber)
+        {
+            MoveCount(p);
+        }
+
+    }
     ///<summary>
     ///player移動・歩数管理メソッド
     ///引数に移動するplayerを当てて外部から呼び出す
@@ -37,11 +55,11 @@ public class PlayerMoveCounter : MonoBehaviour
     }
     public IEnumerator MoveCountCoroutine(CharaController controller)
     {
-        while(PlayerMoveCounter.pmCounter.num > 0)
+        while(num > 0)
         {
-            PlayerMoveCounter.pmCounter.num -= controller.MoveInput();
+            num -= controller.MoveInput();
             yield return null;
         }
-        Debug.Log(PlayerMoveCounter.pmCounter.num + ":fin");
+        Debug.Log(num + ":fin");
     }
 }
