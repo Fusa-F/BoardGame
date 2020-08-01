@@ -15,12 +15,13 @@ public class TileMapGenerator : MonoBehaviour
     public int[,] map;
 
     //tile色
-    public int white = 0;
+    public int normal = 0;
     public int red = 1;
     public int blue = 2;
     public int gold = 3;
     public int silver = 4;
     public int black = 5;
+    public int white = 6;
     [SerializeField] public List<Color> colorList = new List<Color>();
 
     //tileオブジェクト取得
@@ -28,7 +29,7 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField] public GameObject tilemapObj;
     private Tilemap tilemap;
 
-    //redマス座標リスト
+    //各マス座標リスト
     public List<Vector3Int> redTileList = new List<Vector3Int>();
 
     void Awake()
@@ -56,6 +57,7 @@ public class TileMapGenerator : MonoBehaviour
     public void SetTileMapData()
     {
         map = new int[mapHeight, mapWidth];
+        redTileList.Clear();
         for(int i = 0; i < mapHeight; i++)
         {
             for(int j = 0; j < mapWidth; j++)
@@ -82,10 +84,14 @@ public class TileMapGenerator : MonoBehaviour
                 }
                 else
                 {
-                    map[i, j] = white;
+                    map[i, j] = normal;
                 }
             }
         }
+        //white(goal)タイルのランダム設置
+        int rndX = Random.Range(0, mapHeight);
+        int rndY = Random.Range(0, mapWidth);
+        map[rndX, rndY] = white;
 
         CreateMap();
 
@@ -107,12 +113,13 @@ public class TileMapGenerator : MonoBehaviour
         {
             for(int j = 0; j < mapWidth; j++)
             {
-                SetColorTile(i, j, white);
+                SetColorTile(i, j, normal);
                 SetColorTile(i, j, red);
                 SetColorTile(i, j, blue);
                 SetColorTile(i, j, gold);
                 SetColorTile(i, j, silver);
                 SetColorTile(i, j, black);
+                SetColorTile(i, j, white);
             }
         }
     }

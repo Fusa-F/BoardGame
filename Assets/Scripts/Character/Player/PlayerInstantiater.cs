@@ -48,8 +48,8 @@ public class PlayerInstantiater : MonoBehaviour
     ///</summery>
     public GameObject InstantiatePlayer()
     {
-        int rndX = Random.Range(1, 11);
-        int rndY = Random.Range(1, 11);
+        int rndX = Random.Range(1, TileMapGenerator.tileGen.mapHeight + 1);
+        int rndY = Random.Range(1, TileMapGenerator.tileGen.mapWidth + 1);
         GameObject player = (GameObject)Instantiate(playerObj, new Vector2(rndX, rndY), Quaternion.identity);
         SetPlayerStatus(player);
 
