@@ -71,6 +71,7 @@ public class MainFlowManager : MonoBehaviour
 
         //tileごとのイベント
 
+
         yield return StartCoroutine(pUIMana.RemoveUI());
     }
 }

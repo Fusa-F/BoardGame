@@ -62,13 +62,20 @@ public class RandomDiceManager : MonoBehaviour
                 .Append(rect.DOLocalMove(new Vector2(0f, -50f), .2f).SetRelative())
                 .Append(rect.DOLocalMove(new Vector2(0f, 450f), .5f).SetRelative())
                 .AppendCallback(()=>{
-                    GameObject rndNumPanel = (GameObject)Resources.Load("Prefab/RndNumPanel");
-                    GameObject rndNumPanelPre = (GameObject)Instantiate(rndNumPanel);
-                    rndNumPanelPre.transform.SetParent(canvas.transform, false);
+                    //サイコロパネルが画面外へ行ったら、右上残り歩数表示パネル、playerコントローラを生成
+                    InstantiatePrefab("RndNumPanel");
 
                     Destroy(dicePanel);
                 });
 
         return sequence;
+    }
+
+    private void InstantiatePrefab(string prefab)
+    {
+        string pass = "Prefab/" + prefab;
+        GameObject obj = (GameObject)Resources.Load(pass);
+        GameObject objPre = (GameObject)Instantiate(obj);
+        objPre.transform.SetParent(canvas.transform, false);
     }
 }

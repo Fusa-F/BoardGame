@@ -15,6 +15,10 @@ public class PlayerMoveCounter : MonoBehaviour
     public GameObject canvas;
     public GameObject dicePanel;
 
+    //moveBtn
+    public GameObject moveBtnPanel;
+    MoveBtnPanelManager mbManager;
+
     void Awake()
     {
         if(pmCounter == null)
@@ -31,11 +35,13 @@ public class PlayerMoveCounter : MonoBehaviour
     void Start()
     {
         dicePanel = (GameObject)Resources.Load("Prefab/DicePanel");
+        mbManager = moveBtnPanel.GetComponent<MoveBtnPanelManager>();
     }
 
     ///<summary>
     ///サイコロオブジェクト呼び出し->出目numの決定
     ///</summary>
+    //MainFlowManagerから
     public void InstantiateDice()
     {
         GameObject dice = (GameObject)Instantiate(dicePanel);
@@ -50,6 +56,7 @@ public class PlayerMoveCounter : MonoBehaviour
     {
         StartCoroutine("MoveCountCoroutine", player);
     }
+    //MainFlowManagerからコルーチンで呼び出している
     public IEnumerator MoveCountCoroutine(GameObject player)
     {
         //コントローラー取得
@@ -60,6 +67,10 @@ public class PlayerMoveCounter : MonoBehaviour
         {
             yield return null;
         }
+
+        //移動ボタン表示
+        StartCoroutine(mbManager.EnableMoveBtn());
+
         while(num > 0)
         {
             num -= controller.MoveInput();

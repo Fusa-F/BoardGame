@@ -5,33 +5,29 @@ using UnityEngine.UI;
 
 public class PlayerSearchAreaManager : MonoBehaviour
 {
-    public Button moveBtn;
-    public GameObject gameManager;
-    GManager gManager;
+    public bool isWall = false;
 
     void Start()
     {
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-
-        gManager = gameManager.GetComponent<GManager>();
     }
 
-    void Update()
+    //MoveBtnPanelManagerにて、MoveBtnManagerに渡す
+    public bool GetIsWall()
     {
-        
+        return isWall;
     }
 
     private void OnTriggerStay2D(Collider2D other) {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Wall")
         {
-            moveBtn.interactable = false;   
+            isWall = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.tag == "Enemy")
+        if(other.gameObject.tag == "Wall")
         {
-            moveBtn.interactable = true;   
+            isWall = false;
         }        
     }
 }

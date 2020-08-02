@@ -26,8 +26,12 @@ public class TileMapGenerator : MonoBehaviour
 
     //tileオブジェクト取得
     [SerializeField] public TileBase tile;
+    //床
     [SerializeField] public GameObject tilemapObj;
     private Tilemap tilemap;
+    //壁
+    [SerializeField] public GameObject tilemapObjWall;
+    private Tilemap tilemapWall;
 
     //各マス座標リスト
     public List<Vector3Int> redTileList = new List<Vector3Int>();
@@ -46,6 +50,7 @@ public class TileMapGenerator : MonoBehaviour
 
         //tilemapクラス取得
         tilemap = tilemapObj.GetComponent<Tilemap>();
+        tilemapWall = tilemapObjWall.GetComponent<Tilemap>();
 
         //初期化・配置メソッド
         SetTileMapData();
@@ -122,6 +127,9 @@ public class TileMapGenerator : MonoBehaviour
                 SetColorTile(i, j, white);
             }
         }
+
+        //壁配置
+        SetWallTile();
     }
     /// <summary>
     /// 設定された各タイルデータに沿いタイル色を設定
@@ -139,6 +147,28 @@ public class TileMapGenerator : MonoBehaviour
             if(colorNum == red)
             {
                 redTileList.Add(pos);
+            }
+        }
+    }
+    /// <summary>
+    /// 設定されたmapサイズから周囲に壁を設置
+    /// </summary>
+    public void SetWallTile()
+    {
+        int maxH = mapHeight + 1;
+        int maxW = mapWidth + 1;
+
+        for(int i = -1; i < maxH; i++)
+        {
+            for(int j = -1; j < maxW; j++)
+            {
+                if(i == -1 || i == mapHeight)
+                {
+                    Vector3Int pos = new Vector3Int(j, i, 0);
+                    tilemapWall.SetTile(pos, tile);
+                    tilemapWall.SetTileFlags(pos, TileFlags.None);
+                    // tilemapWall.SetColor(pos, color);
+                }
             }
         }
     }
