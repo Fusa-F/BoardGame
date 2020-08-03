@@ -23,6 +23,5 @@ public class MoveBtnManager : MonoBehaviour
         {
             btn.interactable = true;
         }
-        Debug.Log(direction + ":" + btn.interactable);
     }
 }

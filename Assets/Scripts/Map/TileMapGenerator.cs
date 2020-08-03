@@ -35,6 +35,11 @@ public class TileMapGenerator : MonoBehaviour
 
     //各マス座標リスト
     public List<Vector3Int> redTileList = new List<Vector3Int>();
+    public List<Vector3Int> blueTileList = new List<Vector3Int>();
+    public List<Vector3Int> goldTileList = new List<Vector3Int>();
+    public List<Vector3Int> silverTileList = new List<Vector3Int>();
+    public List<Vector3Int> blackTileList = new List<Vector3Int>();
+    public List<Vector3Int> whiteTileList = new List<Vector3Int>();
 
     void Awake()
     {
@@ -62,7 +67,13 @@ public class TileMapGenerator : MonoBehaviour
     public void SetTileMapData()
     {
         map = new int[mapHeight, mapWidth];
+        //各タイルリスト初期化
         redTileList.Clear();
+        blueTileList.Clear();
+        goldTileList.Clear();
+        silverTileList.Clear();
+        blackTileList.Clear();
+        whiteTileList.Clear();
         for(int i = 0; i < mapHeight; i++)
         {
             for(int j = 0; j < mapWidth; j++)
@@ -100,13 +111,6 @@ public class TileMapGenerator : MonoBehaviour
 
         CreateMap();
 
-        int num=0;
-        //test
-        foreach (Vector3Int r in redTileList)
-        {
-            Debug.Log(num + ":" + r);
-            num++;
-        }
     }
 
     /// <summary>
@@ -147,6 +151,23 @@ public class TileMapGenerator : MonoBehaviour
             if(colorNum == red)
             {
                 redTileList.Add(pos);
+            }
+            else if(colorNum == blue)
+            {
+                blueTileList.Add(pos);
+            }
+            else if(colorNum == gold)
+            {
+                goldTileList.Add(pos);
+            }else if(colorNum == silver)
+            {
+                silverTileList.Add(pos);
+            }else if(colorNum == black)
+            {
+                blackTileList.Add(pos);
+            }else if(colorNum == white)
+            {
+                whiteTileList.Add(pos);
             }
         }
     }

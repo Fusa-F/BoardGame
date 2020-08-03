@@ -29,12 +29,14 @@ public class MoveBtnPanelManager : MonoBehaviour
 
     ///<summary>
     ///player移動ボタン表示・非表示
+    //PlayerMoveCounterから呼び出し
     ///</summary>
-    public IEnumerator EnableMoveBtn()
+    public IEnumerator EnableMoveBtn(GameObject player)
     {
+        searchList.Clear();
         //表示
         rect.DOLocalMove(new Vector2(0, distance), 1f).SetRelative();  
-        SetSearchingArea();    
+        SetSearchingArea(player);    
 
         while(PlayerMoveCounter.pmCounter.num <= 0)
         {
@@ -55,9 +57,9 @@ public class MoveBtnPanelManager : MonoBehaviour
         searchList.Clear();  
     }
 
-    public void SetSearchingArea()
+    public void SetSearchingArea(GameObject player)
     {
-        searching = GameObject.FindWithTag("Searching");  
+        searching = player.transform.Find("PlayerSearchAreaManager").gameObject;  
         foreach (Transform child in searching.transform)
         {
             searchList.Add(child.gameObject);

@@ -69,7 +69,7 @@ public class PlayerMoveCounter : MonoBehaviour
         }
 
         //移動ボタン表示
-        StartCoroutine(mbManager.EnableMoveBtn());
+        StartCoroutine(mbManager.EnableMoveBtn(player));
 
         while(num > 0)
         {

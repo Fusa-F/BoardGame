@@ -47,8 +47,12 @@ public class MainFlowManager : MonoBehaviour
             //     yield return StartCoroutine(TurnCoroutine(pl));
             // }  
 
+            for(int i = 0; i < GameManager.Instance.playerNumber.Length; i++)
+            {
+                yield return StartCoroutine(TurnCoroutine(GameManager.Instance.playerNumber[i]));                   
+            }
             //playerターン
-            yield return StartCoroutine(TurnCoroutine(GameManager.Instance.playerNumber[0]));   
+            // yield return StartCoroutine(TurnCoroutine(GameManager.Instance.playerNumber[0]));   
 
             //enemy生成
             yield return StartCoroutine(eInst.SummonEnemyRedTile());   
@@ -73,5 +77,6 @@ public class MainFlowManager : MonoBehaviour
 
 
         yield return StartCoroutine(pUIMana.RemoveUI());
+        yield return new WaitForSeconds(1f);
     }
 }
