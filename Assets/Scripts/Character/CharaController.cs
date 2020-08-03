@@ -85,8 +85,7 @@ public class CharaController : MonoBehaviour
     public Sequence MoveSequence()
     {
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(transform.DOScale(new Vector2(1.2f, 1.2f), .1f))
-                .Append(transform.DOLocalMove(pos, speed))
+        sequence.Append(transform.DOLocalMove(pos, speed))
                 .Join(transform.DOScale(new Vector2(.5f, .5f), .1f))
                 .Append(transform.DOScale(new Vector2(1f, 1f), .1f));
 

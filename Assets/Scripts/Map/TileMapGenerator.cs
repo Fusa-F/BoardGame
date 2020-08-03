@@ -169,6 +169,15 @@ public class TileMapGenerator : MonoBehaviour
                     tilemapWall.SetTileFlags(pos, TileFlags.None);
                     // tilemapWall.SetColor(pos, color);
                 }
+                else
+                {
+                    if(j == -1 || j == mapWidth)
+                    {
+                        Vector3Int pos = new Vector3Int(j, i, 0);
+                        tilemapWall.SetTile(pos, tile);
+                        tilemapWall.SetTileFlags(pos, TileFlags.None);
+                    }
+                }
             }
         }
     }
