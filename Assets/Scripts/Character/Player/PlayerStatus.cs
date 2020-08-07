@@ -6,14 +6,16 @@ public class PlayerStatus : MonoBehaviour
 {
     [SerializeField]
     public CharaStatus status;
-
-    void Start()
-    {
-    }
-
-    void Update()
-    {
-    }
+    /*
+    public string name;
+    public int level;
+    public int maxHp; 
+    public int hp;
+    public int maxExp;
+    public int exp;
+    public int power;
+    public int money;
+    */
 
     ///<summary>
     ///オブジェクト生成時に外部からSET

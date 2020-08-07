@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2775053645064800969}
   - component: {fileID: 3265080158440986765}
   - component: {fileID: -2946179669212804215}
+  - component: {fileID: -5084282989245959775}
   m_Layer: 0
   m_Name: EnemyChara
   m_TagString: Enemy
@@ -130,3 +131,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-5084282989245959775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7629203085850502586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bfa152716b4f0dba5dc31edd6d269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status:
+    name: 
+    level: 0
+    maxHp: 0
+    hp: 0
+    maxExp: 0
+    exp: 0
+    power: 0
+    money: 0
+  isBoss: 0

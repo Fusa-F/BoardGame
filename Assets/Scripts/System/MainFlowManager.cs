@@ -9,13 +9,17 @@ public class MainFlowManager : MonoBehaviour
     PlayerInstantiater pInst;
     public GameObject enemyInstantiater;
     EnemyInstantiater eInst;
-    //
+    //UI
     public GameObject playerStatusUI;
     PlayerStatusUIManager pUIMana;
 
     //camera
     private GameObject cameraObj;
     CameraController cameraController;
+
+    [Header("ターン管理変数")]
+    [SerializeField]
+    public float turnInterval = 1f;
 
     private void Awake() {
         pInst = playerInstantiater.GetComponent<PlayerInstantiater>();
@@ -42,41 +46,65 @@ public class MainFlowManager : MonoBehaviour
         //mainの流れ
         while(true)
         {
-            // foreach(GameObject pl in GameManager.Instance.playerNumber)
-            // {
-            //     yield return StartCoroutine(TurnCoroutine(pl));
-            // }  
-
+            //playerターン
             for(int i = 0; i < GameManager.Instance.playerNumber.Length; i++)
             {
-                yield return StartCoroutine(TurnCoroutine(GameManager.Instance.playerNumber[i]));                   
+                yield return StartCoroutine(PlayerTurnCoroutine(GameManager.Instance.playerNumber[i]));                   
             }
-            //playerターン
-            // yield return StartCoroutine(TurnCoroutine(GameManager.Instance.playerNumber[0]));   
 
             //enemy生成
-            yield return StartCoroutine(eInst.SummonEnemyRedTile());   
+            yield return StartCoroutine(eInst.SummonEnemyRedTile());  
+
+            //enemyターン
+            for(int i = 0; i < eInst.enemyObj.Count; i++)
+            {
+                yield return StartCoroutine(EnemyTurnCoroutine(GameManager.Instance.playerNumber[i]));                   
+            }
 
         }
     }
-    public IEnumerator TurnCoroutine(GameObject player)
+
+    ///<summary>
+    ///プレイヤーターン
+    ///</summary>
+    public IEnumerator PlayerTurnCoroutine(GameObject player)
     {
         //移動メソッド呼び出し     
         cameraController.SetTarget(player);
+        cameraController.ZoomInCamera();
 
         CharaStatus status = player.GetComponent<PlayerStatus>().GetStatus();
+        //名前出力
+        StartCoroutine(TextManager.textManager.TextCoroutine(status.name + "のターン"));
         //statusUI出力
         yield return StartCoroutine(pUIMana.SetElements(status));
 
         //player順にサイコロ・移動メソッド
         PlayerMoveCounter.pmCounter.InstantiateDice();
         yield return StartCoroutine(PlayerMoveCounter.pmCounter.MoveCountCoroutine(player));  
-        Debug.Log("ok");  
 
         //tileごとのイベント
 
-
+        cameraController.ZoomOutCamera();
         yield return StartCoroutine(pUIMana.RemoveUI());
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(turnInterval);
+    }
+
+    ///<summary>
+    ///エネミーターン
+    ///</summary>
+    public IEnumerator EnemyTurnCoroutine(GameObject enemy)
+    {
+        //移動メソッド呼び出し     
+        cameraController.SetTarget(enemy);
+        cameraController.ZoomInCamera();
+
+        // //player順にサイコロ・移動メソッド
+        // PlayerMoveCounter.pmCounter.InstantiateDice();
+        // yield return StartCoroutine(PlayerMoveCounter.pmCounter.MoveCountCoroutine(player));  
+        // Debug.Log("ok");  
+
+        cameraController.ZoomOutCamera();
+        yield return new WaitForSeconds(turnInterval);
     }
 }

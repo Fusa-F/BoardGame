@@ -50,7 +50,8 @@ public class PlayerInstantiater : MonoBehaviour
     {
         int rndX = Random.Range(1, TileMapGenerator.tileGen.mapHeight + 1);
         int rndY = Random.Range(1, TileMapGenerator.tileGen.mapWidth + 1);
-        GameObject player = (GameObject)Instantiate(playerObj, new Vector2(rndX, rndY), Quaternion.identity);
+        Quaternion rote = Quaternion.Euler(0f, 0f, 45f);
+        GameObject player = (GameObject)Instantiate(playerObj, new Vector2(rndX, rndY), rote);
         SetPlayerStatus(player);
 
         //移動メソッド呼び出し     
