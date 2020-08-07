@@ -8,6 +8,7 @@ public class PlayerStatus : MonoBehaviour
     public CharaStatus status;
     /*
     public string name;
+    public Sprite image;
     public int level;
     public int maxHp; 
     public int hp;
@@ -23,9 +24,15 @@ public class PlayerStatus : MonoBehaviour
     public void SetStatus(CharaStatus data)
     {
         status = data;
+        SetSprite();
     }
     public CharaStatus GetStatus()
     {
         return status;
+    }
+
+    private void SetSprite()
+    {
+        this.GetComponent<SpriteRenderer>().sprite = status.image;
     }
 }

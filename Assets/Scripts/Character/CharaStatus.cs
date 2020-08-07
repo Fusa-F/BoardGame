@@ -7,6 +7,7 @@ public class CharaStatus
 {
     [SerializeField]
     public string name;
+    public Sprite image;
     public int level;
     public int maxHp; 
     public int hp;
@@ -15,9 +16,10 @@ public class CharaStatus
     public int power;
     public int money;
 
-    public CharaStatus(string name, int level, int maxHp, int maxExp, int power, int money)
+    public CharaStatus(string name, Sprite image, int level, int maxHp, int maxExp, int power, int money)
     {
         this.name = name;
+        this.image = image;
         this.level = level;
         this.maxHp = maxHp;
         this.hp = maxHp;

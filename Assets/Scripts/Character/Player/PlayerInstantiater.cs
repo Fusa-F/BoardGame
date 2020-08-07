@@ -8,6 +8,8 @@ public class PlayerInstantiater : MonoBehaviour
     //Playerオブジェクト
     public GameObject playerObj;
 
+    [Header("test")]public Sprite image;
+
     //camera
     private GameObject cameraObj;
     CameraController cameraController;
@@ -62,11 +64,13 @@ public class PlayerInstantiater : MonoBehaviour
 
     ///<summery>
     ///プレイヤー情報入力
+    //別途クラス用意検討
     ///</summery>
     public void SetPlayerStatus(GameObject p)
     {
         CharaStatus status = new CharaStatus(
             "fusa",
+            image,
             1,
             1000,
             500,
