@@ -70,12 +70,9 @@ public class PlayerMoveCounter : MonoBehaviour
 
         //移動ボタン表示
         StartCoroutine(mbManager.EnableMoveBtn(player));
+        //移動コルーチン
+        yield return StartCoroutine(controller.MoveInputBtn(num));
 
-        while(num > 0)
-        {
-            num -= controller.MoveInput();
-            yield return null;
-        }
         Debug.Log(num + ":fin");
     }
 }

@@ -1,5 +1,79 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1610223271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610223272}
+  - component: {fileID: 1610223273}
+  - component: {fileID: 5524374233008777823}
+  - component: {fileID: 1564278731929349953}
+  m_Layer: 0
+  m_Name: SkillAreaManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1610223272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610223271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7087709696724336490}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1610223273
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610223271}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
+--- !u!114 &5524374233008777823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610223271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 256bc1e0a70989d459f4d49092e7ba20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillList: []
+--- !u!114 &1564278731929349953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610223271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcb7109ed6c44c3da0714cf3c026a1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &43022952831789112
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6437518520214495374}
   m_Layer: 0
-  m_Name: PlayerSearchAreaManager
+  m_Name: SearchAreaManager
   m_TagString: Searching
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,8 +279,6 @@ GameObject:
   - component: {fileID: 4675772920017775589}
   - component: {fileID: 3569113281610635595}
   - component: {fileID: 3027647101952829836}
-  - component: {fileID: -4659872066033027625}
-  - component: {fileID: 2933235449225952014}
   m_Layer: 0
   m_Name: PlayerChara
   m_TagString: Player
@@ -226,6 +298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6437518520214495374}
+  - {fileID: 1610223272}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
@@ -340,6 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   step: 1
   speed: 0.5
+  skillArea: {fileID: 1610223271}
 --- !u!114 &3027647101952829836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,6 +428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   status:
     name: 
+    image: {fileID: 0}
     level: 0
     maxHp: 0
     hp: 0
@@ -361,32 +436,6 @@ MonoBehaviour:
     exp: 0
     power: 0
     money: 0
---- !u!114 &-4659872066033027625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2722316011046415204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 256bc1e0a70989d459f4d49092e7ba20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillList: []
---- !u!114 &2933235449225952014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2722316011046415204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fcb7109ed6c44c3da0714cf3c026a1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pos: {x: 0, y: 0}
 --- !u!1 &4973715835985422618
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,7 +59,7 @@ public class MoveBtnPanelManager : MonoBehaviour
 
     public void SetSearchingArea(GameObject player)
     {
-        searching = player.transform.Find("PlayerSearchAreaManager").gameObject;  
+        searching = player.transform.Find("SearchAreaManager").gameObject;  
         foreach (Transform child in searching.transform)
         {
             searchList.Add(child.gameObject);

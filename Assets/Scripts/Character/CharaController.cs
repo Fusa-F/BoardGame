@@ -14,18 +14,19 @@ public class CharaController : MonoBehaviour
     private Vector2 pos;
     Sequence moveSeq;
 
+    //攻撃探知エリア
+    public GameObject skillArea;
+    PlayerSkillInstantiater skillInst;
+
     void Start()
     {
-        pos = this.transform.position;     
+        pos = this.transform.position;  
+        skillInst = skillArea.GetComponent<PlayerSkillInstantiater>();   
     }
 
-    // private void Update()
-    // {
-    //     MoveInput();
-    // }
-
     ///<summary>
-    ///入力・移動
+    ///入力・移動　移動回数を返す
+    //PlayerMoveControllerにて呼び出し
     ///</summary>
     public int MoveInput()
     {
@@ -53,6 +54,26 @@ public class CharaController : MonoBehaviour
         {
             return 0;
         }
+    }
+
+    public IEnumerator MoveInputBtn(int num)
+    {
+        Vector2 pos = this.gameObject.transform.position;
+        Vector2 currentPos = pos;
+        while(num > 0)
+        {
+            if(pos != currentPos)
+            {
+                pos = currentPos;
+                yield return StartCoroutine(skillInst.InstantiateSkill(pos));
+                num--;
+            }
+            else
+            {
+                currentPos = this.gameObject.transform.position;
+            }
+        }
+        yield return null;
     }
 
     ///<summary>

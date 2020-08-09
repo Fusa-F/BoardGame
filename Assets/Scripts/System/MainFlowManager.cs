@@ -69,7 +69,7 @@ public class MainFlowManager : MonoBehaviour
     ///</summary>
     public IEnumerator PlayerTurnCoroutine(GameObject player)
     {
-        //移動メソッド呼び出し     
+        //カメラ移動メソッド呼び出し     
         cameraController.SetTarget(player);
         cameraController.ZoomInCamera();
 
@@ -95,7 +95,7 @@ public class MainFlowManager : MonoBehaviour
     ///</summary>
     public IEnumerator EnemyTurnCoroutine(GameObject enemy)
     {
-        //移動メソッド呼び出し     
+        //カメラ移動メソッド呼び出し     
         cameraController.SetTarget(enemy);
         cameraController.ZoomInCamera();
 

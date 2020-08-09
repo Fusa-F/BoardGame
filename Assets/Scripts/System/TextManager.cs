@@ -17,7 +17,6 @@ public class TextManager : MonoBehaviour
         if(textManager == null)
         {
             textManager = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

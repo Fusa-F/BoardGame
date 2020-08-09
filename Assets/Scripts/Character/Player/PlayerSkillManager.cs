@@ -5,19 +5,11 @@ using UnityEngine;
 public class PlayerSkillManager : MonoBehaviour
 {
     //プレイヤーの持つスキルのリスト
-    public List<GameObject> skillList = new List<GameObject>();
+    [Header("取得済みスキルリスト")]public List<GameObject> skillList = new List<GameObject>();
 
     void Start()
     {
-        Debug.Log("X -> PlayerSkillManager.SetSkillList()");
-    }
-
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.X))
-        {
-            SetSkillList();
-        }
+        SetSkillList();
     }
 
     //test
