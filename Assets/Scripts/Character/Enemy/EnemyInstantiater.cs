@@ -5,7 +5,11 @@ using UnityEngine;
 public class EnemyInstantiater : MonoBehaviour
 {
     //Enemyオブジェクト
-    public List<GameObject> enemyObj = new List<GameObject>();
+    public GameObject enemyObj;
+    public List<GameObject> enemyObjList = new List<GameObject>();
+
+    //EnemyManagerステータス管理
+    public EnemyManager enemyManager;
 
     //camera
     private GameObject cameraObj;
@@ -13,7 +17,8 @@ public class EnemyInstantiater : MonoBehaviour
 
     void Start()
     {
-        enemyObj.Add((GameObject)Resources.Load("Prefab/EnemyChara"));
+        enemyObj = (GameObject)Resources.Load("Prefab/EnemyChara");
+        enemyManager = Resources.Load<EnemyManager>("Prefab/EnemyManager01");
 
         //camera取得
         cameraObj = Camera.main.gameObject;
@@ -27,18 +32,18 @@ public class EnemyInstantiater : MonoBehaviour
     {
         int x = pos.x + 1;
         int y = pos.y + 1;
+        Quaternion rote = Quaternion.Euler(0f, 0f, 45f);
 
-        foreach (GameObject enemyPre in enemyObj)
-        {
-            GameObject enemy = (GameObject)Instantiate(enemyPre, new Vector2(x, y), Quaternion.identity);
+        GameObject enemy = (GameObject)Instantiate(enemyObj, new Vector2(x, y), rote);
+        SetEnemyStatus(enemy);
+        enemyObjList.Add(enemy);
 
-            //移動メソッド呼び出し     
-            cameraController.SetTarget(enemy);
-            yield return new WaitForSeconds(2f);
-        }
+        //移動メソッド呼び出し     
+        cameraController.SetTarget(enemy);
+        yield return new WaitForSeconds(2f);
     }
     ///<summary>
-    ///redタイル座標に確率でエネミー生成
+    ///redタイル座標にエネミー生成
     ///</summary>
     public IEnumerator SummonEnemyRedTile()
     {
@@ -46,5 +51,18 @@ public class EnemyInstantiater : MonoBehaviour
         int rnd = Random.Range(0, redTileCount);
         yield return StartCoroutine(InstantiateEnemy(TileMapGenerator.tileGen.redTileList[rnd]));
         Debug.Log(rnd);
+    }
+
+    ///<summery>
+    ///プレイヤー情報入力
+    //別途クラス用意検討
+    ///</summery>
+    public void SetEnemyStatus(GameObject e)
+    {
+        //ランダムなエネミー情報を取得・生成
+        int rnd = Random.Range(0, enemyManager.enemyStatusList.Count);
+        CharaStatus status = enemyManager.enemyStatusList[rnd];
+        EnemyStatus enemyStatus = e.GetComponent<EnemyStatus>();
+        enemyStatus.SetStatus(status);
     }
 }

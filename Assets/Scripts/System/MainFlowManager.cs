@@ -56,9 +56,9 @@ public class MainFlowManager : MonoBehaviour
             yield return StartCoroutine(eInst.SummonEnemyRedTile());  
 
             //enemyターン
-            for(int i = 0; i < eInst.enemyObj.Count; i++)
+            for(int i = 0; i < eInst.enemyObjList.Count; i++)
             {
-                yield return StartCoroutine(EnemyTurnCoroutine(GameManager.Instance.playerNumber[i]));                   
+                yield return StartCoroutine(EnemyTurnCoroutine(eInst.enemyObjList[i]));                   
             }
 
         }
@@ -98,6 +98,10 @@ public class MainFlowManager : MonoBehaviour
         //移動メソッド呼び出し     
         cameraController.SetTarget(enemy);
         cameraController.ZoomInCamera();
+
+        CharaStatus status = enemy.GetComponent<EnemyStatus>().GetStatus();
+        //名前出力
+        StartCoroutine(TextManager.textManager.TextCoroutine(status.name + "のターン"));
 
         // //player順にサイコロ・移動メソッド
         // PlayerMoveCounter.pmCounter.InstantiateDice();

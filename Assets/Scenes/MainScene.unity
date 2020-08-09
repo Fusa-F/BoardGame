@@ -250,7 +250,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 070db47cf7c0e45f9a67e6d9fe7fa6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyObj: []
+  enemyObj: {fileID: 7629203085850502586, guid: c90e32e41db311a4e8e8c491551ba099,
+    type: 3}
+  enemyObjList: []
+  enemyManager: {fileID: 0}
 --- !u!4 &530538116
 Transform:
   m_ObjectHideFlags: 0
@@ -1179,7 +1182,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67111df7e3be3d488717adb78ac27a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
+  playerObj: {fileID: 2722316011046415204, guid: 14d95f1d61665f749b9371205664fc19,
+    type: 3}
+  image: {fileID: 21300000, guid: 55b7b09719ca8493e9d039695b44bfad, type: 3}
   plNum: 1
 --- !u!4 &1621095350
 Transform:
@@ -1491,6 +1496,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1204166704}
     m_Modifications:
+    - target: {fileID: 7987147538427588275, guid: a6f35a5158e27f6459400d733890a1dc,
+        type: 3}
+      propertyPath: speed
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7987147538427588278, guid: a6f35a5158e27f6459400d733890a1dc,
         type: 3}
       propertyPath: m_LocalPosition.x
