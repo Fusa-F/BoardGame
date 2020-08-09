@@ -175,7 +175,7 @@ Camera:
   far clip plane: 1000
   field of view: 10
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1184,8 +1184,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerObj: {fileID: 2722316011046415204, guid: 14d95f1d61665f749b9371205664fc19,
     type: 3}
-  image: {fileID: 21300000, guid: 55b7b09719ca8493e9d039695b44bfad, type: 3}
-  plNum: 1
+  image: {fileID: 21300000, guid: d4e252e92acb94770af57c54f47f4298, type: 3}
+  plNum: 2
 --- !u!4 &1621095350
 Transform:
   m_ObjectHideFlags: 0
@@ -1278,7 +1278,7 @@ MonoBehaviour:
   playerInstantiater: {fileID: 1621095348}
   enemyInstantiater: {fileID: 530538114}
   playerStatusUI: {fileID: 717032598}
-  turnInterval: 3
+  turnInterval: 1.5
 --- !u!4 &1777309154
 Transform:
   m_ObjectHideFlags: 0

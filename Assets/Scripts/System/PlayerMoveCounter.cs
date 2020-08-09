@@ -52,10 +52,6 @@ public class PlayerMoveCounter : MonoBehaviour
     ///player移動・歩数管理コルーチン
     ///引数に移動するplayerを当てて外部から呼び出す
     ///</summary>
-    public void MoveCount(GameObject player)
-    {
-        StartCoroutine("MoveCountCoroutine", player);
-    }
     //MainFlowManagerからコルーチンで呼び出している
     public IEnumerator MoveCountCoroutine(GameObject player)
     {
@@ -71,11 +67,13 @@ public class PlayerMoveCounter : MonoBehaviour
         //移動ボタン表示
         StartCoroutine(mbManager.EnableMoveBtn(player));
 
-        while(num > 0)
-        {
-            num -= controller.MoveInput();
-            yield return null;
-        }
+        // while(num > 0)
+        // {
+        //     num -= controller.MoveInput();
+        //     yield return null;
+        // }
+        yield return StartCoroutine(controller.MoveInput());
         Debug.Log(num + ":fin");
     }
+
 }

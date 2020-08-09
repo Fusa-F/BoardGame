@@ -9,9 +9,14 @@ public class CharaController : MonoBehaviour
     [SerializeField] private float step = 1f;
     //移動速度
     [SerializeField] private float speed = .5f;
+    //インターバル
+    private float interval = .8f;
+    //移動フラグ
+    [SerializeField] private bool isMoved = true;
 
     //現在地
-    private Vector2 pos;
+    public Vector2 pos;
+    public Vector2 prevPos;
     Sequence moveSeq;
 
     //攻撃探知エリア
@@ -21,57 +26,50 @@ public class CharaController : MonoBehaviour
     void Start()
     {
         pos = this.transform.position;  
+        prevPos = pos;
         skillInst = skillArea.GetComponent<PlayerSkillInstantiater>();   
     }
 
     ///<summary>
     ///入力・移動　移動回数を返す
-    //PlayerMoveControllerにて呼び出し
     ///</summary>
-    public int MoveInput()
+    public void MInput()
     {
         if(Input.GetKeyDown(KeyCode.W))
         {
             MoveUp();
-            return 1;
         }
         else if(Input.GetKeyDown(KeyCode.S))
         {
             MoveDown();
-            return 1;
         }
         else if(Input.GetKeyDown(KeyCode.D))
         {
             MoveRight();
-            return 1;
         }
         else if(Input.GetKeyDown(KeyCode.A))
         {
             MoveLeft();
-            return 1;
         }
         else
         {
-            return 0;
         }
     }
 
-    public IEnumerator MoveInputBtn(int num)
+    //PlayerMoveCounterで呼び出し
+    public IEnumerator MoveInput()
     {
-        Vector2 pos = this.gameObject.transform.position;
-        Vector2 currentPos = pos;
-        while(num > 0)
+        isMoved = true;
+        while(PlayerMoveCounter.pmCounter.num > 0)
         {
-            if(pos != currentPos)
+            MInput();
+            if(pos != prevPos)
             {
-                pos = currentPos;
-                yield return StartCoroutine(skillInst.InstantiateSkill(pos));
-                num--;
+                prevPos = pos;
+                PlayerMoveCounter.pmCounter.num--;
+                yield return new WaitForSeconds(interval);
             }
-            else
-            {
-                currentPos = this.gameObject.transform.position;
-            }
+            yield return null;
         }
         yield return null;
     }
@@ -81,34 +79,55 @@ public class CharaController : MonoBehaviour
     ///</summary>
     public void MoveUp()
     {
-        pos.y += step;
-        moveSeq = MoveSequence();
-        moveSeq.Play();
+        if(isMoved)
+        {
+            isMoved = false;
+            pos.y += step;
+            moveSeq = MoveSequence();
+            moveSeq.Play();
+        }
     }
     public void MoveDown()
     {
-        pos.y -= step;
-        moveSeq = MoveSequence();
-        moveSeq.Play();
+        if(isMoved)
+        {
+            isMoved = false;
+            pos.y -= step;
+            moveSeq = MoveSequence();
+            moveSeq.Play();  
+        }
+        
     }
     public void MoveRight()
     {
-        pos.x += step;
-        moveSeq = MoveSequence();
-        moveSeq.Play();
+        if(isMoved)
+        {
+            isMoved = false;
+            pos.x += step;
+            moveSeq = MoveSequence();
+            moveSeq.Play();            
+        }
     }
     public void MoveLeft()
     {
-        pos.x -= step;
-        moveSeq = MoveSequence();
-        moveSeq.Play();
+        if(isMoved)
+        {
+            isMoved = false;
+            pos.x -= step;
+            moveSeq = MoveSequence();
+            moveSeq.Play();            
+        }
     }
     public Sequence MoveSequence()
     {
         Sequence sequence = DOTween.Sequence();
         sequence.Append(transform.DOLocalMove(pos, speed))
                 .Join(transform.DOScale(new Vector2(.5f, .5f), .1f))
-                .Append(transform.DOScale(new Vector2(1f, 1f), .1f));
+                .Append(transform.DOScale(new Vector2(1f, 1f), .1f))
+                .AppendCallback(() => {
+                    pos = this.transform.position;
+                    isMoved = true;
+                });
 
         return sequence;
     }

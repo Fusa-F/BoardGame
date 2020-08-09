@@ -33,10 +33,14 @@ public class MoveBtnPanelManager : MonoBehaviour
     ///</summary>
     public IEnumerator EnableMoveBtn(GameObject player)
     {
+        //壁判定リスト・ボタンイベントリセット
         searchList.Clear();
+        RemoveBtnEvent();
+
         //表示
         rect.DOLocalMove(new Vector2(0, distance), 1f).SetRelative();  
         SetSearchingArea(player);    
+        SetBtnEvent(player);
 
         while(PlayerMoveCounter.pmCounter.num <= 0)
         {
@@ -57,12 +61,31 @@ public class MoveBtnPanelManager : MonoBehaviour
         searchList.Clear();  
     }
 
+    //壁探知エリア取得
     public void SetSearchingArea(GameObject player)
     {
         searching = player.transform.Find("SearchAreaManager").gameObject;  
         foreach (Transform child in searching.transform)
         {
             searchList.Add(child.gameObject);
+        }
+    }
+
+    //ボタンイベント
+    private void SetBtnEvent(GameObject player)
+    {
+        CharaController cont = player.GetComponent<CharaController>();
+        btns[0].GetComponent<Button>().onClick.AddListener(cont.MoveUp);
+        btns[1].GetComponent<Button>().onClick.AddListener(cont.MoveRight);
+        btns[2].GetComponent<Button>().onClick.AddListener(cont.MoveDown);
+        btns[3].GetComponent<Button>().onClick.AddListener(cont.MoveLeft);
+    }
+    //ボタンイベント削除
+    private void RemoveBtnEvent()
+    {
+        foreach(GameObject btn in btns)
+        {
+            btn.GetComponent<Button>().onClick.RemoveAllListeners();
         }
     }
 }
