@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   messageList: []
+  messageListLength: 3
   text: {fileID: 7987147539113227588}
   speed: 0.05
 --- !u!1 &7987147539113227590

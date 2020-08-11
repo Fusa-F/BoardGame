@@ -901,7 +901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0ede1ce06fff41b181a69b89df7295d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 150
+  yPos: 180
   btns: []
   searching: {fileID: 0}
   searchList: []

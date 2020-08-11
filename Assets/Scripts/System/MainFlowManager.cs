@@ -12,6 +12,8 @@ public class MainFlowManager : MonoBehaviour
     //UI
     public GameObject playerStatusUI;
     PlayerStatusUIManager pUIMana;
+    public GameObject dayCounter;
+    DayCounter dCount;
 
     //camera
     private GameObject cameraObj;
@@ -25,6 +27,7 @@ public class MainFlowManager : MonoBehaviour
         pInst = playerInstantiater.GetComponent<PlayerInstantiater>();
         eInst = enemyInstantiater.GetComponent<EnemyInstantiater>();
         pUIMana = playerStatusUI.GetComponent<PlayerStatusUIManager>();
+        dCount = dayCounter.GetComponent<DayCounter>();
         
         //camera取得
         cameraObj = Camera.main.gameObject;
@@ -61,6 +64,7 @@ public class MainFlowManager : MonoBehaviour
                 yield return StartCoroutine(EnemyTurnCoroutine(eInst.enemyObjList[i]));                   
             }
 
+            dCount.CountUp(1);
         }
     }
 
