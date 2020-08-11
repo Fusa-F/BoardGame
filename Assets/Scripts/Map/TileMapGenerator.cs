@@ -15,17 +15,18 @@ public class TileMapGenerator : MonoBehaviour
     public int[,] map;
 
     //tile色
-    public int normal = 0;
-    public int red = 1;
-    public int blue = 2;
-    public int gold = 3;
-    public int silver = 4;
-    public int black = 5;
-    public int white = 6;
+    private int normal = 0;
+    private int red = 1;
+    private int blue = 2;
+    private int gold = 3;
+    private int silver = 4;
+    private int black = 5;
+    private int white = 6;
     [SerializeField] public List<Color> colorList = new List<Color>();
 
     //tileオブジェクト取得
     [SerializeField] public TileBase tile;
+    [SerializeField] public TileBase tileWall;
     [SerializeField] public TileBase tileWt;
     //床
     [SerializeField] public GameObject tilemapObj;
@@ -75,6 +76,7 @@ public class TileMapGenerator : MonoBehaviour
         silverTileList.Clear();
         blackTileList.Clear();
         whiteTileList.Clear();
+
         for(int i = 0; i < mapHeight; i++)
         {
             for(int j = 0; j < mapWidth; j++)
@@ -104,12 +106,14 @@ public class TileMapGenerator : MonoBehaviour
                     map[i, j] = normal;
                 }
             }
-        }
+        }      
+
         //white(goal)タイルのランダム設置
         int rndX = Random.Range(0, mapHeight);
         int rndY = Random.Range(0, mapWidth);
         map[rndX, rndY] = white;
 
+        //タイル配置
         CreateMap();
 
     }
@@ -160,13 +164,16 @@ public class TileMapGenerator : MonoBehaviour
             else if(colorNum == gold)
             {
                 goldTileList.Add(pos);
-            }else if(colorNum == silver)
+            }
+            else if(colorNum == silver)
             {
                 silverTileList.Add(pos);
-            }else if(colorNum == black)
+            }
+            else if(colorNum == black)
             {
                 blackTileList.Add(pos);
-            }else if(colorNum == white)
+            }
+            else if(colorNum == white)
             {
                 whiteTileList.Add(pos);
                 tilemap.SetTile(pos, tileWt);
@@ -190,16 +197,15 @@ public class TileMapGenerator : MonoBehaviour
                 if(i == -1 || i == mapHeight)
                 {
                     Vector3Int pos = new Vector3Int(j, i, 0);
-                    tilemapWall.SetTile(pos, tile);
+                    tilemapWall.SetTile(pos, tileWall);
                     tilemapWall.SetTileFlags(pos, TileFlags.None);
-                    // tilemapWall.SetColor(pos, color);
                 }
                 else
                 {
                     if(j == -1 || j == mapWidth)
                     {
                         Vector3Int pos = new Vector3Int(j, i, 0);
-                        tilemapWall.SetTile(pos, tile);
+                        tilemapWall.SetTile(pos, tileWall);
                         tilemapWall.SetTileFlags(pos, TileFlags.None);
                     }
                 }

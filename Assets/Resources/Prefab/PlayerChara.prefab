@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 4675772920017775589}
   - component: {fileID: 3569113281610635595}
   - component: {fileID: 3027647101952829836}
+  - component: {fileID: 6248627277218190008}
   m_Layer: 0
   m_Name: PlayerChara
   m_TagString: Player
@@ -413,6 +414,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   step: 1
   speed: 0.5
+  isMoved: 0
+  pos: {x: 0, y: 0}
+  prevPos: {x: 0, y: 0}
   skillArea: {fileID: 1610223271}
 --- !u!114 &3027647101952829836
 MonoBehaviour:
@@ -436,6 +440,18 @@ MonoBehaviour:
     exp: 0
     power: 0
     money: 0
+--- !u!114 &6248627277218190008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2722316011046415204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8264f8a7c8c424da3a8e32ea396bc604, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4973715835985422618
 GameObject:
   m_ObjectHideFlags: 0

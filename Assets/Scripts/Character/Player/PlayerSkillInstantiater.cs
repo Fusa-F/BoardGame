@@ -7,7 +7,7 @@ public class PlayerSkillInstantiater : MonoBehaviour
     //スキル管理スクリプト
     PlayerSkillManager psManager;
 
-    //PlayerMoveCounter内にて移動処理ごとに呼び出し
+    //CharaController内にて移動処理ごとに呼び出し
     public IEnumerator InstantiateSkill(Vector2 pos)
     {
         //test

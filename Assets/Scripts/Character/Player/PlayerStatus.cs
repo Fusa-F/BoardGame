@@ -31,8 +31,9 @@ public class PlayerStatus : MonoBehaviour
         return status;
     }
 
+    //スプライト設置
     private void SetSprite()
     {
         this.GetComponent<SpriteRenderer>().sprite = status.image;
-    }
+    }    
 }

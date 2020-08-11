@@ -127,6 +127,7 @@ public class CharaController : MonoBehaviour
                 .AppendCallback(() => {
                     pos = this.transform.position;
                     isMoved = true;
+                    StartCoroutine(skillInst.InstantiateSkill(this.transform.position));
                 });
 
         return sequence;

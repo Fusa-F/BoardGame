@@ -32,11 +32,12 @@ public class EnemyInstantiater : MonoBehaviour
     {
         int x = pos.x + 1;
         int y = pos.y + 1;
+        Vector2 position = new Vector2(x, y);
         Quaternion rote = Quaternion.Euler(0f, 0f, 45f);
 
-        GameObject enemy = (GameObject)Instantiate(enemyObj, new Vector2(x, y), rote);
-        SetEnemyStatus(enemy);
+        GameObject enemy = (GameObject)Instantiate(enemyObj, position, rote);
         enemyObjList.Add(enemy);
+        SetEnemyStatus(enemy);
 
         //移動メソッド呼び出し     
         cameraController.SetTarget(enemy);
@@ -54,7 +55,7 @@ public class EnemyInstantiater : MonoBehaviour
     }
 
     ///<summery>
-    ///プレイヤー情報入力
+    ///エネミー情報入力
     //別途クラス用意検討
     ///</summery>
     public void SetEnemyStatus(GameObject e)
@@ -63,6 +64,6 @@ public class EnemyInstantiater : MonoBehaviour
         int rnd = Random.Range(0, enemyManager.enemyStatusList.Count);
         CharaStatus status = enemyManager.enemyStatusList[rnd];
         EnemyStatus enemyStatus = e.GetComponent<EnemyStatus>();
-        enemyStatus.SetStatus(status);
+        enemyStatus.SetStatus(status, enemyObjList.Count - 1);
     }
 }

@@ -19,13 +19,28 @@ public class EnemyStatus : MonoBehaviour
     */
 
     [SerializeField] public bool isBoss;
+    [Header("何番目か")][SerializeField] public int listNum;
+
+    GameObject enemyInstantiater;
+    EnemyInstantiater eInst;
+
+    private void Start()
+    {
+        enemyInstantiater = GameObject.Find("Instantiater/EnemyInstantiater");
+        eInst = enemyInstantiater.GetComponent<EnemyInstantiater>();
+    }
+    private void OnDestroy()
+    {
+        eInst.enemyObjList.RemoveAt(listNum);
+    }
 
     ///<summary>
     ///オブジェクト生成時に外部からSET
     ///</summary>
-    public void SetStatus(CharaStatus data)
+    public void SetStatus(CharaStatus data, int num)
     {
         status = data;
+        listNum = num;
         SetSprite();
     }
     public CharaStatus GetStatus()
