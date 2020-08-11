@@ -68,7 +68,34 @@ MonoBehaviour:
     power: 10
     money: 10
   - name: "\u30C7\u30D3\u30EB"
-    image: {fileID: 21300000, guid: 53b6ebfaa1dde436f85fddd9e1243803, type: 3}
+    image: {fileID: 21300000, guid: eb5996c5d79694bafbeea6172ddd3c60, type: 3}
+    level: 0
+    maxHp: 100
+    hp: 0
+    maxExp: 100
+    exp: 0
+    power: 10
+    money: 10
+  - name: "\u30AC\u30FC\u30B4\u30A4\u30EB"
+    image: {fileID: 21300000, guid: 329e5d68ae2824396a6ca783caa6b261, type: 3}
+    level: 0
+    maxHp: 100
+    hp: 0
+    maxExp: 100
+    exp: 0
+    power: 10
+    money: 10
+  - name: "\u30C9\u30EF\u30FC\u30D5"
+    image: {fileID: 21300000, guid: 4fd2286ed9dfa469086521dcc9bab7e9, type: 3}
+    level: 0
+    maxHp: 100
+    hp: 0
+    maxExp: 100
+    exp: 0
+    power: 10
+    money: 10
+  - name: "\u5F13\u4F7F\u3044"
+    image: {fileID: 21300000, guid: e434d092162c84c769fe6f8c03fa1701, type: 3}
     level: 0
     maxHp: 100
     hp: 0

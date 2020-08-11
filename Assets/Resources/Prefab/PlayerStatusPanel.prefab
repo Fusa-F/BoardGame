@@ -962,6 +962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1434a5f70fab81f4499db00a920a1c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yPos: 240
   elements:
   - {fileID: 9210987045987133184}
   - {fileID: 9210987047621863292}

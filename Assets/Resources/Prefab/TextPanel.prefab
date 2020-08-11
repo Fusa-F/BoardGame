@@ -26,7 +26,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7987147538427588279}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999118, y: 0.9999118, z: 0.99991167}
   m_Children:
@@ -88,7 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee790a317cac4414fb4c0215a4b9c778, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageList: []
   text: {fileID: 7987147539113227588}
+  speed: 0.05
 --- !u!1 &7987147539113227590
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +126,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 450, y: 80}
+  m_SizeDelta: {x: 450, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7987147539113227587
 CanvasRenderer:
@@ -166,4 +168,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u306A\u3093\u3089\u304B\u306E\u30C6\u30AD\u30B9\u30C8\u304C\u5165\u308A\u307E\u3059\u3002"
+  m_Text: 

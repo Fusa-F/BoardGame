@@ -26,6 +26,7 @@ public class TileMapGenerator : MonoBehaviour
 
     //tileオブジェクト取得
     [SerializeField] public TileBase tile;
+    [SerializeField] public TileBase tileWt;
     //床
     [SerializeField] public GameObject tilemapObj;
     private Tilemap tilemap;
@@ -168,6 +169,9 @@ public class TileMapGenerator : MonoBehaviour
             }else if(colorNum == white)
             {
                 whiteTileList.Add(pos);
+                tilemap.SetTile(pos, tileWt);
+                tilemap.SetTileFlags(pos, TileFlags.None);
+                tilemap.SetColor(pos, color);
             }
         }
     }

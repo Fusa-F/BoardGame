@@ -7,6 +7,7 @@ using DG.Tweening;
 public class PlayerStatusUIManager : MonoBehaviour
 {
     RectTransform rect;
+    [Header("移動位置")][SerializeField] public float yPos = 200f;
     //子要素オブジェクト群
     public List<GameObject> elements = new List<GameObject>();
 
@@ -37,14 +38,14 @@ public class PlayerStatusUIManager : MonoBehaviour
         elements[5].GetComponent<StatusTextManager>().SetMoney(status.money.ToString());
         
         //UI表示位置へ移動
-        rect.DOLocalMoveY(-200f, 1f).SetRelative();
+        rect.DOLocalMoveY(yPos * (-1), 1f).SetRelative();
         yield return null;
     }
     
     public IEnumerator RemoveUI()
     {
         //UI非表示位置へ移動
-        rect.DOLocalMoveY(200f, 1f).SetRelative();
+        rect.DOLocalMoveY(yPos, 1f).SetRelative();
         yield return null;
     }
 }

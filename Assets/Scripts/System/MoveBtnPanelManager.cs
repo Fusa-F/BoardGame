@@ -8,7 +8,7 @@ public class MoveBtnPanelManager : MonoBehaviour
 {
     RectTransform rect;
     //表示・非表示時の移動距離
-    [SerializeField]public float distance = 300f;
+    [Header("移動位置")][SerializeField]public float yPos = 300f;
 
     //子要素ボタン
     public List<GameObject> btns = new List<GameObject>();
@@ -38,7 +38,7 @@ public class MoveBtnPanelManager : MonoBehaviour
         RemoveBtnEvent();
 
         //表示
-        rect.DOLocalMove(new Vector2(0, distance), 1f).SetRelative();  
+        rect.DOLocalMove(new Vector2(0, yPos), 1f).SetRelative();  
         SetSearchingArea(player);    
         SetBtnEvent(player);
 
@@ -57,7 +57,7 @@ public class MoveBtnPanelManager : MonoBehaviour
         }
 
         //非表示
-        rect.DOLocalMove(new Vector2(0, distance * -1f), 1f).SetRelative();    
+        rect.DOLocalMove(new Vector2(0, yPos * -1f), 1f).SetRelative();    
         searchList.Clear();  
     }
 
