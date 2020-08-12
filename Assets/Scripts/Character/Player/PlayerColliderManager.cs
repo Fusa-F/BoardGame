@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerColliderManager : MonoBehaviour
 {
-    PlayerStatus pStatus;
+    // PlayerStatus pStatus;
 
     [SerializeField]public List<Vector3> targetList = new List<Vector3>();
 
     void Start()
     {
-        pStatus = this.GetComponent<PlayerStatus>();
+        // pStatus = this.GetComponent<PlayerStatus>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

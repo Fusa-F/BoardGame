@@ -31,7 +31,14 @@ public class EnemyStatus : MonoBehaviour
     }
     private void OnDestroy()
     {
-        eInst.enemyObjList.RemoveAt(listNum);
+        for(int i = 0; i < eInst.enemyObjList.Count; i++)
+        {
+            EnemyStatus eStat = eInst.enemyObjList[i].GetComponent<EnemyStatus>();
+            if(eStat.listNum == listNum)
+            {
+                eInst.enemyObjList.RemoveAt(i);
+            }
+        }
     }
 
     ///<summary>

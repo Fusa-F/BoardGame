@@ -10,6 +10,8 @@ public class SkillController : MonoBehaviour
     //速度
     [SerializeField]public float speed = 1f;
 
+    [SerializeField]public Vector3 target;
+
     //camera
     private GameObject cameraObj;
     CameraController cameraController;
@@ -20,16 +22,22 @@ public class SkillController : MonoBehaviour
         cameraObj = Camera.main.gameObject;
         cameraController = cameraObj.GetComponent<CameraController>();
 
-        MoveObject();
+        StartCoroutine(MoveObject());
     }
 
-    public void MoveObject()
+    public IEnumerator MoveObject()
     {
+
         // Vector2 line = distance - pos;
-        transform.DOLocalMove(distance, speed).SetRelative().OnComplete(()=>
+        // transform.DOLocalMove(distance, speed).SetRelative().OnComplete(()=>
+        // {
+        //     Destroy(transform.parent.gameObject);
+        // });
+        transform.DOMove(target, speed).OnComplete(()=>
         {
             Destroy(transform.parent.gameObject);
         });
+        yield return null;
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -39,5 +47,11 @@ public class SkillController : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(transform.parent.gameObject);
         }
+    }
+
+    //親よりターゲット座標セット
+    public void SetPos(Vector3 pos)
+    {
+        target = pos;
     }
 }
