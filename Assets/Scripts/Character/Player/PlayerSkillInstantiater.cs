@@ -9,6 +9,9 @@ public class PlayerSkillInstantiater : MonoBehaviour
 
     PlayerColliderManager colliderManager;
 
+    //スキル生成時の親
+    public GameObject player;
+
     private void Start()
     {
         psManager = this.GetComponent<PlayerSkillManager>();
@@ -31,12 +34,9 @@ public class PlayerSkillInstantiater : MonoBehaviour
 
             if(colliderManager.targetList.Count > 0)
             {
-                    GameObject skillObj = (GameObject)Instantiate(psManager.skillList[0], pos, Quaternion.identity);
-                    SkillDirectionManager sdManager = skillObj.GetComponent<SkillDirectionManager>();
-
-                // SkillDirectionManager sdManager = psManager.skillList[0].GetComponent<SkillDirectionManager>();
+                GameObject skillObj = (GameObject)Instantiate(psManager.skillList[0], pos, Quaternion.identity, player.transform);
+                SkillDirectionManager sdManager = skillObj.GetComponent<SkillDirectionManager>();
                 sdManager.SetTarget(colliderManager.targetList[0]);
-                // GameObject skillObj = (GameObject)Instantiate(psManager.skillList[0], pos, Quaternion.identity);
             }
 
             yield return null;
